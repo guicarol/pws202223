@@ -1,8 +1,10 @@
 <?php
-require_once 'controller/AuthController.php';
-require_once 'controller/PlanoController.php';
-require_once 'controller/HomeController.php';
-require_once 'controller/BookController.php';
+require_once 'controllers/AuthController.php';
+require_once 'controllers/EmpresaController.php';
+require_once 'controllers/HomeController.php';
+require_once 'controllers/ServicoController.php';
+require_once 'controllers/IvaController.php';
+require_once 'controllers/UserController.php';
 
 return [
     'defaultRoute' => ['GET', 'HomeController', 'index'],
@@ -11,18 +13,38 @@ return [
         'login' => ['POST', 'AuthController', 'login'],
         'logout' => ['GET', 'AuthController', 'logout']
     ],
-    'plano'=>[
-        'index' => ['GET','PlanoController','index'],
-        'show' => ['POST','PlanoController','show']
+    'empresa'=>[
+        'index' => ['GET','EmpresaController','index'],
+        'show' => ['GET','EmpresaController','show'],
+        'edit' => ['GET','EmpresaController','edit'],
+        'update' => ['POST','EmpresaController','update']
     ],
-    'book'=>[
-        'index' => ['GET','BookController','index'],
-        'create' => ['GET','BookController','create'],
-        'store' => ['POST','BookController','store'],
-        'show' => ['GET','BookController','show'],
-        'edit' => ['GET','BookController','edit'],
-        'update' => ['POST','BookController','update'],
-        'delete' => ['GET','BookController','delete']
+    'servico'=>[
+        'index' => ['GET','ServicoController','index'],
+        'create' => ['GET','ServicoController','create'],
+        'store' => ['POST','ServicoController','store'],
+        'show' => ['GET','ServicoController','show'],
+        'edit' => ['GET','ServicoController','edit'],
+        'update' => ['POST','ServicoController','update'],
+        'delete' => ['GET','ServicoController','delete']
+    ],
+    'iva'=>[
+        'index' => ['GET','IvaController','index'],
+        'create' => ['GET','IvaController','create'],
+        'store' => ['POST','IvaController','store'],
+        'show' => ['GET','IvaController','show'],
+        'edit' => ['GET','IvaController','edit'],
+        'update' => ['POST','IvaController','update'],
+        'delete' => ['GET','IvaController','delete']
+    ],
+    'user'=>[
+        'index' => ['GET','UserController','index'],
+        'create' => ['GET','UserController','create'],
+        'store' => ['POST','UserController','store'],
+        'show' => ['GET','UserController','show'],
+        'edit' => ['GET','UserController','edit'],
+        'update' => ['POST','UserController','update'],
+        'delete' => ['GET','UserController','delete']
     ],
     'home'=>[
         'index' => ['GET', 'HomeController', 'index']
