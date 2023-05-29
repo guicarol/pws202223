@@ -11,8 +11,9 @@ class Auth
 
     public function checkAuth($username, $password)
     {
-        if ($username == "Gui" && $password == "1234") {
+        if ($username == "Admin" && $password == "1234") {
             $_SESSION['username'] = $username;
+
             return true;
         } else {
             return false;

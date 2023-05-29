@@ -16,7 +16,8 @@ class AuthController extends Controller
         $auth = new Auth();
 
         if ($auth->checkAuth($_POST['username'], $_POST['password']) == true) {
-            header('Location: index.php?c=plano&a=index');
+
+            header('Location: index.php?c=iva&a=index');
         } else {
             require_once 'views/auth/index.php';
         }
