@@ -5,10 +5,10 @@
         <table class="table tablestriped">
             <thead>
             <th><h3>Id</h3></th>
-            <th><h3>Name</h3></th>
-            <th><h3>ISBN</h3>
+            <th><h3>Referência</h3></th>
+            <th><h3>Descricao</h3>
             </th>
-            <th><h3>Genre</h3>
+            <th><h3>Preço hora</h3>
 
             <th><h3>User Actions</h3></th>
             </thead>
@@ -41,6 +41,5 @@
             <a href="index.php?c=servico&a=create" class="btn btn-info"
                role="button">New</a>
         </p>
-        <a href="index.php?c=book&a=edit&id=<?= $servico->id ?>" class="btn btninfo" role="button"> Edit </a>
     </div>
 </div> <!-- /row -->

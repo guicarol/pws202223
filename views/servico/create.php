@@ -2,10 +2,10 @@
     Referencia: <input type="text" name="name" value="<?php if (isset($servico)) {
         echo $servico->referencia;
     } ?>">
-    Descricao: <input type="text" name="isbn" value="<?php if (isset($servico)) {
+    Descricao: <input type="text" name="descricao" value="<?php if (isset($servico)) {
         echo $servico->descricao;
     } ?>">
-    Preço hora: <input type="number" name="isbn" value="<?php if (isset($servico)) {
+    Preço hora: <input type="number" name="precohora" value="<?php if (isset($servico)) {
         echo $servico->precohora;
     } ?>">
 
@@ -25,7 +25,7 @@
         ?>
     </p>
 
-    <label for="genre_id">Genre:</label><br>
+    <label for="genre_id">Iva:</label><br>
     <select name="iva_id">
         <?php foreach($ivas as $iva){?>
             <option value="<?= $iva->id?>"> <?= $iva->percentagem; ?></option>

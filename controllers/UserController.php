@@ -8,7 +8,7 @@ class UserController extends AuthController
     {
         $this->loginFilter();
         if ($this->getRole() == 'cliente'){
-            $this->redirectToRoute('fatura', 'minhasfaturas');
+            $this->redirectToRoute('folhasobra', 'index');
         }
     }
 
