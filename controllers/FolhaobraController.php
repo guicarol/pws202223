@@ -1,9 +1,8 @@
 <?php
 
-require_once 'models/CalculadoraPlano.php';
 require_once 'controllers/Controller.php';
 
-class PlanoController extends Controller
+class FolhaobraController extends Controller
 {
     public function __construct()
     {
@@ -12,8 +11,9 @@ class PlanoController extends Controller
 
     public function index()
     {
+        $folhasobras=Folhaobra::all();
 
-        $this->renderView('plano', 'index'); //chama a vista index do PlanoController
+        $this->renderView('folhasobra', 'index',['folhasobras'=>$folhasobras]); //chama a vista index do FolhaobraController
 
     }
 

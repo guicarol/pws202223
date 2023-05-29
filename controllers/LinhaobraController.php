@@ -2,25 +2,21 @@
 require_once 'Controller.php';
 require_once './models/Servico.php';
 
-class ChapterController extends Controller
+class LinhaobraController extends Controller
 {
-    public function index($id)
-    {
-        $book = Book::find($id);
-        $this->renderView('chapter', 'index', ['servico' => $book]);
-    }
 
-    public function create($id)
+    public function create($id_servico,$id_folhaobra)
     {
+        $servico=Servico::find($id_servico);
+        $folhaobra=Folhaobra::find($id_folhaobra);
         //mostrar a vista create
-        $book = Book::find($id);
-        $this->renderView('chapter', 'create',['servico'=>$book]);
+        $this->renderView('linhasobra', 'create',['servico'=>$servico,'folhaobra'=>$folhaobra]);
 
 
     }
 
     public function store(){
-        $chapter = new Chapter($this-> getHTTPPost());
+        $chapter = new Linhaobra($this-> getHTTPPost());
         if($chapter->is_valid()){
             $chapter->save();
             $this->redirectToRoute('chapter','index',['id'=>$chapter->book_id]);
@@ -31,7 +27,7 @@ class ChapterController extends Controller
 
     public function edit($id)
     {
-        $chapter = Chapter::find($id);
+        $chapter = Linhaobra::find($id);
         if (is_null($chapter)) {
             //TODO redirect to standard error page
             header('Location:index.php?' . INVALID_ACCESS_ROUTE);
@@ -45,7 +41,7 @@ class ChapterController extends Controller
     public function update($id)
     {
 
-        $chapter = Chapter::find($id);
+        $chapter = Linhaobra::find($id);
         $chapter->update_attributes($this-> getHTTPPost());
         if($chapter->is_valid()){
             $chapter->save();
@@ -59,10 +55,11 @@ class ChapterController extends Controller
     }
     public function delete($id)
     {
-        $chapter = Chapter::find($id);
+        $chapter = Linhaobra::find($id);
         $chapter->delete();
         //redirecionar para o index
         $this->redirectToRoute('chapter','index');
 
     }
 }
+

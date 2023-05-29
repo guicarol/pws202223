@@ -1,7 +1,7 @@
 <?php
 require_once 'Controller.php';
 require_once './models/Servico.php';
-require_once './models/Genre.php';
+require_once './models/Folhaobra.php';
 
 class ServicoController extends Controller
 {
@@ -92,5 +92,18 @@ class ServicoController extends Controller
         //redirecionar para o index
         $this->redirectToRoute('servico','index');
 
+    }
+
+    public function escolha_servico($folhaobra_id)
+    {
+        if (isset($_POST['pesquisa'])){
+            $pesquisa = $_POST['pesquisa'];
+        } else {
+            $pesquisa = '';
+        }
+        $servicos = Servico::find('all', array('conditions' => "descricao LIKE '%$pesquisa%'"));
+
+        //mostrar a vista index passando os dados por parâmetro
+        $this->renderView('servico', 'escolha_servico', ['servicos' => $servicos, 'folhaobra_id' => $folhaobra_id]);
     }
 }

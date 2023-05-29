@@ -9,7 +9,11 @@ class Servico extends \ActiveRecord\Model
     );
 
     static $has_many = array(
-        array('ivas')
+        array('iva')
+    );
+
+    static $belongs_to = array(
+        array('linhaobra')
     );
 
 }

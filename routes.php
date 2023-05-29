@@ -5,6 +5,7 @@ require_once 'controllers/HomeController.php';
 require_once 'controllers/ServicoController.php';
 require_once 'controllers/IvaController.php';
 require_once 'controllers/UserController.php';
+require_once 'controllers/FolhaobraController.php';
 
 return [
     'defaultRoute' => ['GET', 'AuthController', 'index'],
@@ -26,7 +27,9 @@ return [
         'show' => ['GET','ServicoController','show'],
         'edit' => ['GET','ServicoController','edit'],
         'update' => ['POST','ServicoController','update'],
-        'delete' => ['GET','ServicoController','delete']
+        'delete' => ['GET','ServicoController','delete'],
+        'escolha_servico' => ['POST','ServicoController','escolha_servico'],
+
     ],
     'iva'=>[
         'index' => ['GET','IvaController','index'],
@@ -45,6 +48,15 @@ return [
         'edit' => ['GET','UserController','edit'],
         'update' => ['POST','UserController','update'],
         'delete' => ['GET','UserController','delete']
+    ],
+    'folhasobra'=>[
+        'index' => ['GET','FolhaobraController','index'],
+        'create' => ['GET','FolhaobraController','create'],
+        'store' => ['POST','FolhaobraController','store'],
+        'show' => ['GET','FolhaobraController','show'],
+        'edit' => ['GET','FolhaobraController','edit'],
+        'update' => ['POST','FolhaobraController','update'],
+        'delete' => ['GET','FolhaobraController','delete']
     ],
     'home'=>[
         'index' => ['GET', 'HomeController', 'index']
