@@ -5,15 +5,16 @@ class Auth
 
     public function __construct()
     {
-        session_start();
-
+        if(session_status() != PHP_SESSION_ACTIVE){
+            session_start();
+        }
     }
 
     public function checkAuth($username, $password)
     {
-        if ($username == "Admin" && $password == "1234") {
-            $_SESSION['username'] = $username;
-
+        $user = User::find_by_username_and_password($username,$password);
+        if ($user){
+            $_SESSION['id']=$user->id;
             return true;
         } else {
             return false;
@@ -22,7 +23,7 @@ class Auth
 
     public function isLoggedIn()
     {
-        if (isset($_SESSION['username'])) {
+        if (isset($_SESSION['id'])) {
             return true;
         } else {
             return false;
@@ -32,5 +33,9 @@ class Auth
     function logout()
     {
         session_destroy();
+    }
+    public function getUser(){
+        $user = User::find($_SESSION['id']);
+        return $user;
     }
 }

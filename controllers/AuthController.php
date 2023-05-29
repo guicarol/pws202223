@@ -8,18 +8,25 @@ class AuthController extends Controller
 
     public function index()
     {
-        require_once './views/auth/index.php';
+        $this->renderView('auth','index');
     }
 
     public function login()
     {
         $auth = new Auth();
-
-        if ($auth->checkAuth($_POST['username'], $_POST['password']) == true) {
-
-            header('Location: index.php?c=iva&a=index');
-        } else {
-            require_once 'views/auth/index.php';
+        $sessao = $auth->checkAuth($_POST['username'], ($_POST['password']));
+        if($sessao) {
+            $user = $auth ->getUser();
+            switch ($user->role){
+                case 'Cliente':
+                    $this->redirectToRoute('home', 'index');
+                    break;
+                case 'Funcionario':
+                case 'Admin':
+                    $this->redirectToRoute('home', 'index');
+            }
+        } else{
+            $this->redirectToRoute('auth', 'index');
         }
     }
 
