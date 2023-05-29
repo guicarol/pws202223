@@ -1,4 +1,4 @@
-<h2 class="text-left top-space">Fatura Index</h2>
+<h2 class="text-left top-space">Folha obra Index</h2>
 <h2 class="top-space"></h2>
 <div class="row">
     <div class="col-sm-12">
@@ -18,12 +18,12 @@
                         <td class="text-center"><?= number_format($folhasobra->valortotal,2); echo'€'; ?></td>
                         <td class="text-center"><?= number_format($folhasobra->ivatotal,2); echo'€'; ?></td>
                         <td class="text-center"><?= $folhasobra->estado ?></td>
-                        <td class="text-center"><?= $folhasobra->user_empregado->username ?></td>
-                        <td class="text-center"><?= $folhasobra->user_cliente->username ?></td>
+                        <td class="text-center"><?= $folhasobra->user->username ?></td>
+                        <td class="text-center"><?= $folhasobra->user->username ?></td>
                         <td class="text-center">
                             <?php
                                 if($folhasobra->estado == "em lançamento"){
-                                    echo '<a href="router.php?c=linhasfatura&a=create&id_fatura='. $folhasobra->id .'"
+                                    echo '<a href="index.php?c=linhasfatura&a=create&id_fatura='. $folhasobra->id .'"
                                             class="btn btn-info" role="button">Adicinar produto</a>';
                                 }else if($folhasobra->estado == "emitida"){
                                     echo '<a target="_blank" href="router.php?c=fatura&a=imprimir&id_fatura='. $folhasobra->id .'"
