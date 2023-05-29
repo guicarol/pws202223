@@ -7,7 +7,7 @@ require_once 'controllers/IvaController.php';
 require_once 'controllers/UserController.php';
 
 return [
-    'defaultRoute' => ['GET', 'HomeController', 'index'],
+    'defaultRoute' => ['GET', 'AuthController', 'index'],
     'auth' => [
         'index' => ['GET', 'AuthController', 'index'],
         'login' => ['POST', 'AuthController', 'login'],
