@@ -1,4 +1,4 @@
-<h2 class="text-left top-space">Book Index</h2>
+<h2 class="text-left top-space">Serviço Index</h2>
 <h2 class="top-space"></h2>
 <div class="row">
     <div class="col-sm-12">
@@ -13,7 +13,7 @@
             <th><h3>User Actions</h3></th>
             </thead>
             <tbody>
-            <?php foreach ($servicos as $servico) { ?>
+            <?php  foreach ($servicos as $servico) { ?>
                 <tr>
                     <td><?= $servico->id ?></td>
                     <td><?= $servico->referencia ?></td>
@@ -21,13 +21,11 @@
                     <td><?= $servico->precohora ?></td>
                     <td><?= $servico->iva->percentagem ?></td>
                     <td>
-                        <a href="index.php?c=book&a=show&id=<?= $servico->id ?>"
+                        <a href="index.php?c=servico&a=show&id=<?= $servico->id ?>"
                            class="btn btn-info" role="button">Show</a>
-                        <a href="index.php?c=book&a=edit&id=<?= $servico->id ?>"
+                        <a href="index.php?c=servico&a=edit&id=<?= $servico->id ?>"
                            class="btn btn-info" role="button">Edit</a>
-                        <a href="index.php?c=chapter&a=index&id=<?= $servico->id ?>"
-                           class="btn btn-info" role="button">Chapter</a>
-                        <a href="index.php?c=book&a=delete&id=<?= $servico->id ?>"
+                        <a href="index.php?c=servico&a=delete&id=<?= $servico->id ?>"
                            class="btn btn-warning" role="button">Delete</a>
                     </td>
                 </tr>

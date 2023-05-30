@@ -1,5 +1,5 @@
 <form method="POST" action="index.php?c=servico&a=store">
-    Referencia: <input type="text" name="name" value="<?php if (isset($servico)) {
+    Referencia: <input type="text" name="referencia" value="<?php if (isset($servico)) {
         echo $servico->referencia;
     } ?>">
     Descricao: <input type="text" name="descricao" value="<?php if (isset($servico)) {
@@ -25,7 +25,7 @@
         ?>
     </p>
 
-    <label for="genre_id">Iva:</label><br>
+    <label for="iva_id">Iva:</label><br>
     <select name="iva_id">
         <?php foreach($ivas as $iva){?>
             <option value="<?= $iva->id?>"> <?= $iva->percentagem; ?></option>

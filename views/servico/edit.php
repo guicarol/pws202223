@@ -1,16 +1,18 @@
-<form method="POST" action="index.php?c=book&a=update&id=<?= $book->id ?>">
-    Name: <input type="text" name="name" value="<?php if (isset($book)){echo $book->name;}?>">
-    <?php if(isset($book->errors)){ echo $book->errors->on('name'); }?>
-    ISBN: <input type="number" name="isbn" value="<?php if (isset($book)){echo $book->isbn;}?>">
-    <?php if(isset($book->errors)){ echo $book->errors->on('isbn'); }?>
-    <label for="genres">Genre:</label><br>
-    <select name="genre_id">
-        <?php foreach($genres as $genre){?>
-            <?php if($genre->id == $book->genre_id) { ?>
-                <option value="<?= $genre->id?>" selected><?= $genre->name;
+<form method="POST" action="index.php?c=servico&a=update&id=<?= $servico->id ?>">
+    Referencia: <input type="text" name="referencia" value="<?php if (isset($servico)){echo $servico->referencia;}?>">
+    <?php if(isset($servico->errors)){ echo $servico->errors->on('referencia'); }?>
+    Descricao: <input type="text" name="descricao" value="<?php if (isset($servico)){echo $servico->descricao;}?>">
+    <?php if(isset($servico->errors)){ echo $servico->errors->on('descricao'); }?>
+    Preço hora: <input type="number" name="precohora" value="<?php if (isset($servico)){echo $servico->precohora;}?>">
+    <?php if(isset($servico->errors)){ echo $servico->errors->on('precohora'); }?>
+    <label for="ivas">Iva:</label><br>
+    <select name="iva_id">
+        <?php foreach($ivas as $iva){?>
+            <?php if($iva->id == $servico->iva_id) { ?>
+                <option value="<?= $iva->id?>" selected><?= $iva->percentagem;
                     ?> </option>
             <?php }else { ?>
-                <option value="<?= $genre->id?>"> <?= $genre->name;
+                <option value="<?= $iva->id?>"> <?= $iva->percentagem;
                     ?></option>
             <?php }
         } ?>

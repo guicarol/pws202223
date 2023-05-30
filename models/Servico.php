@@ -8,12 +8,8 @@ class Servico extends \ActiveRecord\Model
         array('precohora', 'message' => 'It must be provided')
     );
 
-    static $has_many = array(
-        array('iva')
-    );
-
     static $belongs_to = array(
-        array('linhaobra')
+        array('iva')
     );
 
 }

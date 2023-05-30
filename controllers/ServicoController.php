@@ -8,6 +8,7 @@ class ServicoController extends Controller
     public function index()
     {
         $servicos = Servico::all();
+
         //mostrar a vista index passando os dados por parâmetro
         $this->renderView('servico', 'index', ['servicos' => $servicos]);
 
@@ -39,10 +40,10 @@ class ServicoController extends Controller
     public function store()
     {
         $ivas=Iva::all();
-
         $servico = new Servico($this->getHTTPPost());
         if ($servico->is_valid()) {
             $servico->save();
+
 
             //redirecionar para o index
             $this->redirectToRoute('servico', 'index');
@@ -73,22 +74,22 @@ class ServicoController extends Controller
 
     public function update($id)
     {
-        $book = Book::find($id);
-        $book->update_attributes($this-> getHTTPPost());
-        if($book->is_valid()){
-            $book->save();
+        $servico = Servico::find($id);
+        $servico->update_attributes($this-> getHTTPPost());
+        if($servico->is_valid()){
+            $servico->save();
             //redirecionar para o index
             $this->redirectToRoute('servico','index');
         } else {
             //mostrar vista edit passando o modelo como parâmetro
-            $this->renderView('servico', 'edit', ['servico' => $book]);
+            $this->renderView('servico', 'edit', ['servico' => $servico]);
 
         }
     }
     public function delete($id)
     {
-        $book = Book::find($id);
-        $book->delete();
+        $servico = Servico::find($id);
+        $servico->delete();
         //redirecionar para o index
         $this->redirectToRoute('servico','index');
 

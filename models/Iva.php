@@ -12,7 +12,7 @@ class Iva extends \ActiveRecord\Model
         array('percentagem', 'with' => '/[0-9]$/' , 'message' => 'apenas números'),
     );
 
-    static $belongs_to = array(
-        array('servico')
+    static $has_many = array(
+        array('servicos')
     );
 }
