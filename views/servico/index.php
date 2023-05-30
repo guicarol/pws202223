@@ -10,7 +10,7 @@
             </th>
             <th><h3>Preço hora</h3>
 
-            <th><h3>User Actions</h3></th>
+            <th><h3>Iva</h3></th>
             </thead>
             <tbody>
             <?php  foreach ($servicos as $servico) { ?>
@@ -18,8 +18,8 @@
                     <td><?= $servico->id ?></td>
                     <td><?= $servico->referencia ?></td>
                     <td><?= $servico->descricao ?></td>
-                    <td><?= $servico->precohora ?></td>
-                    <td><?= $servico->iva->percentagem ?></td>
+                    <td><?= $servico->precohora ?> €</td>
+                    <td><?= $servico->iva->percentagem ?> %</td>
                     <td>
                         <a href="index.php?c=servico&a=show&id=<?= $servico->id ?>"
                            class="btn btn-info" role="button">Show</a>
