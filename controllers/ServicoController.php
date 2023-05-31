@@ -30,7 +30,8 @@ class ServicoController extends Controller
 
     public function create()
     {
-        $ivas=Iva::all();
+
+        $ivas=Iva::all('all', array('conditions' => "vigor LIKE '1'"));
         //mostrar a vista create
         $this->renderView('servico', 'create',['ivas'=>$ivas]);
 

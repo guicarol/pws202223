@@ -1,7 +1,7 @@
 <div class="row">
     <h2 class="text-left top-space">Lista de users</h2>
     <div class="col">
-        <form action="router.php?c=user&a=index_all_user" method="post">
+        <form action="index.php?c=user&a=index_all_user" method="post">
             <div class="input-group mb-3">
                 <input type="search" class="form-control" name="pesquisa" placeholder="Pesquisar Cliente pelo username ou role" aria-label="Recipient's username" aria-describedby="basic-addon2">
                 <div class="input-group-append">
@@ -11,7 +11,7 @@
         </form>
     </div>
     <div class="col-sm-2 text-center">
-        <a href="router.php?c=user&a=create_user" class="btn w-100 p-2 btn-info">Criar user</a>
+        <a href="index.php?c=user&a=create_user" class="btn w-100 p-2 btn-info">Criar user</a>
     </div>
 </div>
 <div class="row">

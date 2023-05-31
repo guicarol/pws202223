@@ -28,8 +28,7 @@ class IvaController extends AuthController
 
     public function create()
     {
-        $ivas = Iva::find([1]);
-        $this->renderView('iva','create', ['ivas' => $ivas]);
+        $this->renderView('iva','create');
     }
 
     public function store()

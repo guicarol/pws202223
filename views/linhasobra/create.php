@@ -4,13 +4,13 @@
 <div class="row">
     <div class="col-sm-12">
 
-        <form method="POST" action=<?php echo'./index.php?c=linhasobra&a=store&folhaobra='. $folhaobra->id?>
+        <form method="POST" action=<?php echo'./index.php?c=linhasobra&a=store&folhaobra_id='. $folhaobra->id?>
             <br>
             <div class="boxer">
                 <div class="row"id="row1">
                     <div class="col-3">
                     <label for="cliente_id">Nome do cliente:</label>
-                    <input type="text" name="cliente_id" class="form-control" value="<?= $folhaobra->user->username?>" disabled>
+                    <input type="text" name="cliente_id" class="form-control" value="<?= $folhaobra->user->id?>" disabled>
                     <br>
                     </div>
                 </div>
@@ -28,7 +28,7 @@
                                 <div class="col-2">
                                     <p></p>
                                     <button type="button" class="btn btn-sm btn-light shadow-sm">
-                                        <a class="btn" href="./index.php?c=servico&a=escolher_produto&id_folhaobra=<?=$folhaobra->id?>">
+                                        <a class="btn" href="./index.php?c=servico&a=escolha_servico&folhaobra_id=<?=$folhaobra->id?>">
                                             Procurar Produto
                                         </a>
                                     </button>
@@ -41,13 +41,13 @@
                                             if(isset($naoproduto) and $naoproduto) {
                                                 echo 'Produto inexistente';
                                             }
-                                            if(isset($linhafatura->errors)) {
-                                                if (is_array($linhafatura->errors->on('produto_id'))) {
-                                                    foreach ($linhafatura->errors->on('produto_id') as $error) {
+                                            if(isset($linhasobra->errors)) {
+                                                if (is_array($linhasobra->errors->on('produto_id'))) {
+                                                    foreach ($linhasobra->errors->on('produto_id') as $error) {
                                                         echo $error .'<br>';
                                                     }
                                                 } else {
-                                                    echo $linhafatura->errors->on('produto_id');
+                                                    echo $linhasobra->errors->on('produto_id');
 
                                                 }
                                             }
@@ -58,13 +58,13 @@
                                             if(isset($naoproduto) and $naoproduto) {
                                                 echo 'Produto inexistente';
                                             }
-                                            if(isset($linhafatura->errors)) {
-                                                if (is_array($linhafatura->errors->on('produto_id'))) {
-                                                    foreach ($linhafatura->errors->on('produto_id') as $error) {
+                                            if(isset($linhasobra->errors)) {
+                                                if (is_array($linhasobra->errors->on('produto_id'))) {
+                                                    foreach ($linhasobra->errors->on('produto_id') as $error) {
                                                         echo $error .'<br>';
                                                     }
                                                 } else {
-                                                    echo $linhafatura->errors->on('produto_id');
+                                                    echo $linhasobra->errors->on('produto_id');
 
                                                 }
                                             }
@@ -96,32 +96,32 @@
                         <br><br><br>
                         </form>
 
-                        <?php if($linhasfatura != null){foreach ($linhasfatura as $linhafatura) { ?>
+                        <?php if($linhasobra != null){foreach ($linhasobra as $linhasobra) { ?>
                             <div class="row">
                                 <div class="col">
                                     <label>Descrição do produto</label>
-                                    <input type="text" class="form-control" value="<?= $linhafatura->produto->descricao ?>" disabled>
+                                    <input type="text" class="form-control" value="<?= $linhasobra->produto->descricao ?>" disabled>
                                 </div>
                                 <div class="col">
                                     <label>Referencia</label>
-                                    <input type="text" class="form-control" value="<?= $linhafatura->produto->referencia ?>" disabled>
+                                    <input type="text" class="form-control" value="<?= $linhasobra->produto->referencia ?>" disabled>
                                 </div>
                                 <div class="col">
                                     <label>Valor</label>
-                                    <input type="text" class="form-control" value="<?= number_format($linhafatura->valor, 2); ?>€" disabled>
+                                    <input type="text" class="form-control" value="<?= number_format($linhasobra->valor, 2); ?>€" disabled>
                                 </div>
                                 <div class="col">
                                     <label>Valor Iva</label>
-                                    <input type="text" class="form-control" value="<?= number_format($linhafatura->valoriva, 2);?>€" disabled>
+                                    <input type="text" class="form-control" value="<?= number_format($linhasobra->valoriva, 2);?>€" disabled>
                                 </div>
                                 <div class="col">
                                     <label>Quantidade</label>
-                                    <input type="number" class="form-control" value="<?= $linhafatura->quantidade ?>" disabled>
+                                    <input type="number" class="form-control" value="<?= $linhasobra->quantidade ?>" disabled>
                                 </div>
                                 <div class="col">
                                     <p></p>
                                     <?php
-                                        echo '<a href="router.php?c=linhasfatura&a=delete&id='. $linhafatura->id .'"
+                                        echo '<a href="index.php?c=linhasfatura&a=delete&id='. $linhasobra->id .'"
                                             class="btn btn-info" role="button">Apagar</a>';
 
                                     ?>
@@ -151,7 +151,7 @@
                 <div class="row">
                     <div class="col-sm-10"></div>
                     <div class="col-sm-2">
-                        <a class="nav-link" href="./router.php?c=fatura&a=updateestado&id=<?= $folhaobra->id ?>">
+                        <a class="nav-link" href="./index.php?c=fatura&a=updateestado&id=<?= $folhaobra->id ?>">
                             <button class="btn w-100 p-2 btn-info">Emitir fatura</button>
                         </a>
                     </div>

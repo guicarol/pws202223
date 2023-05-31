@@ -5,17 +5,24 @@ require_once './models/Servico.php';
 class LinhaobraController extends Controller
 {
 
-    public function create($id_servico,$id_folhaobra)
+    public function create($id_folhaobra,$id_servico)
     {
-        $servico=Servico::find($id_servico);
         $folhaobra=Folhaobra::find($id_folhaobra);
         //mostrar a vista create
-        $this->renderView('linhasobra', 'create',['servico'=>$servico,'folhaobra'=>$folhaobra]);
+        if($id_servico!=0){
+            $servico=Servico::find($id_servico);
+
+            $this->renderView('linhasobra', 'create',['folhaobra'=>$folhaobra,'servico'=>$servico]);
+
+        }else{
+            $this->renderView('linhasobra', 'create',['folhaobra'=>$folhaobra]);
+
+        }
 
 
     }
 
-    public function store(){
+    public function store($folhaobra_id){
         $chapter = new Linhaobra($this-> getHTTPPost());
         if($chapter->is_valid()){
             $chapter->save();

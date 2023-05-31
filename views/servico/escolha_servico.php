@@ -18,7 +18,6 @@
             <th class="text-center"><h3>Referência</h3></th>
             <th class="text-center"><h3>Descrição</h3></th>
             <th class="text-center"><h3>Preço</h3></th>
-            <th class="text-center"><h3>Stock</h3></th>
             <th class="text-center"><h3>Iva</h3></th>
             <th class="text-center"><h3></h3></th>
             </thead>
@@ -27,11 +26,10 @@
                 <tr>
                     <td class="text-center"><?=$servico->referencia?></td>
                     <td class="text-center"><?=$servico->descricao?></td>
-                    <td class="text-center"><?=$servico->preco?>€</td>
-                    <td class="text-center"><?= $servico->stock?></td>
+                    <td class="text-center"><?=$servico->precohora?>€</td>
                     <td class="text-center"><?= $servico->iva->percentagem?> %</td>
                     <td class="text-center">
-                        <a href="index.php?c=linhasobra&a=create&id_folhaobra=<?=$folhaobra_id?>&id_produto=<?=$servico->id?>"
+                        <a href="index.php?c=linhasobra&a=create&id_folhaobra=<?=$folhaobra_id?>&id_servico=<?=$servico->id?>"
                            class="btn btn-info" role="button">Adicinar produto</a>
                     </td>
                 </tr>

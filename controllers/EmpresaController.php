@@ -5,7 +5,6 @@ require_once 'AuthController.php';
 class EmpresaController extends AuthController
 {
 
-
     public function show($id)
     {
         $empresa = Empresa::find($id);

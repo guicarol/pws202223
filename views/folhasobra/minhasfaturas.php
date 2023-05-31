@@ -12,19 +12,20 @@
             </thead>
             <tbody>
 
-            <?php if($faturas != null){
-                foreach ($faturas as $fatura) { ?>
+            <?php if($folhaobras != null){
+                foreach ($folhaobras as $folhaobra) { ?>
                     <tr>
-                        <td class="text-center"><?= date('Y/m/d H:i:s', strtotime($fatura->data)); ?></td>
-                        <td class="text-center"><?= number_format($fatura->valortotal,2); echo'€'; ?></td>
-                        <td class="text-center"><?= number_format($fatura->ivatotal,2); echo'€'; ?></td>
-                        <td class="text-center"><?= $fatura->user_empregado->username ?></td>
+                        <td class="text-center"><?= $folhaobra = $folhaobra;
+                            date('Y/m/d H:i:s', strtotime($folhaobra->data)); ?></td>
+                        <td class="text-center"><?= number_format($folhaobra->valortotal,2); echo'€'; ?></td>
+                        <td class="text-center"><?= number_format($folhaobra->ivatotal,2); echo'€'; ?></td>
+                        <td class="text-center"><?= $folhaobra->user_empregado->username ?></td>
                         <td class="text-center">
                             <?php
-                            if($fatura->estado == "emitida"){
-                                echo '<a target="_blank" href="router.php?c=fatura&a=imprimir&id_fatura='. $fatura->id .'"
+                            if($folhaobra->estado == "emitida"){
+                                echo '<a target="_blank" href="index.php?c=folhaobra&a=imprimir&id_fatura='. $folhaobra->id .'"
                                         class="btn btn-info" role="button">Imprimir</a>
-                                       <a href="router.php?c=fatura&a=show&id_fatura='. $fatura->id .'"
+                                       <a href="index.php?c=folhaobra&a=show&id_fatura='. $folhaobra->id .'"
                                             class="btn btn-info" role="button">show</a>';
                             }
                             ?>

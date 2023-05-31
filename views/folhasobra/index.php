@@ -23,12 +23,12 @@
                         <td class="text-center">
                             <?php
                                 if($folhasobra->estado == "em lançamento"){
-                                    echo '<a href="index.php?c=linhasfatura&a=create&id_fatura='. $folhasobra->id .'"
+                                    echo '<a href="index.php?c=linhasobra&a=create&id_fatura='. $folhasobra->id .'"
                                             class="btn btn-info" role="button">Adicinar produto</a>';
                                 }else if($folhasobra->estado == "emitida"){
-                                    echo '<a target="_blank" href="router.php?c=fatura&a=imprimir&id_fatura='. $folhasobra->id .'"
+                                    echo '<a target="_blank" href="index.php?c=linhasobra&a=imprimir&id_fatura='. $folhasobra->id .'"
                                             class="btn btn-info" role="button">Imprimir</a>
-                                          <a href="router.php?c=fatura&a=show&id_fatura='. $folhasobra->id .'"
+                                          <a href="index.php?c=linhasobra&a=show&id_fatura='. $folhasobra->id .'"
                                             class="btn btn-info" role="button">show</a>';
                                 }
                             ?>
@@ -37,5 +37,12 @@
                 <?php } ?>
             </tbody>
         </table>
+        <div class="col-sm-6">
+            <h3>Emitir </h3>
+            <p>
+                <a href="index.php?c=folhasobra&a=create" class="btn btn-info"
+                   role="button">New</a>
+            </p>
+        </div>
     </div>
 </div>

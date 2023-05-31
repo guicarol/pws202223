@@ -2,7 +2,7 @@
 <h2 class="top-space"></h2>
 <div class="row">
     <div class="col-sm-12">
-        <form action="./router.php?c=user&a=store_cliente" method="POST">
+        <form action="./index.php?c=user&a=store_cliente" method="POST">
             <br>
 
             <label for="username">Username:</label><br>
