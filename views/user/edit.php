@@ -1,57 +1,30 @@
-<h2 class="text-left top-space">Editar perfil</h2>
-<h2 class="top-space"></h2>
-<div class="row">
-    <div class="col-sm-12">
-        <form action="./router.php?c=user&a=update&id=<?=$user->id?>" method="POST">
-            <br>
-            <label for="id">Id:</label><br>
-            <input class="input-forms" type="text" name="id" value="<?=$user->id?>" disabled><br>
-            <p></p>
-            <label for="username">username:</label><br>
-            <input class="input-forms" type="text" name="username" value="<?=$user->username?>" disabled><br>
-            <p><?php
-                if(isset($cliente->errors)) {
-                    if (is_array($cliente->errors->on('username'))) {
-                        foreach ($cliente->errors->on('username') as $error) {
-                            echo $error . '<br>';
-                        }
-                    } else {
-                        echo $cliente->errors->on('username');
-                    }
-                }
-                ?>
-            </p>
-            <label for="password">password:</label><br>
-            <input class="input-forms" type="password" name="password" value=""><br>
-            <p><?php
-                if(isset($cliente->errors)) {
-                    if (is_array($cliente->errors->on('password'))) {
-                        foreach ($cliente->errors->on('password') as $error) {
-                            echo $error . '<br>';
-                        }
-                    } else {
-                        echo $cliente->errors->on('password');
-                    }
-                }
-                ?>
-            </p>
-            <label for="email">Email:</label><br>
-            <input class="input-forms" type="text" name="email" value="<?=$user->email?>"><br>
-            <p><?php
-                if(isset($cliente->errors)) {
-                    if (is_array($cliente->errors->on('email'))) {
-                        foreach ($cliente->errors->on('email') as $error) {
-                            echo $error . '<br>';
-                        }
-                    } else {
-                        echo $cliente->errors->on('email');
-                    }
-                }
-                ?>
-            </p>
-
-            <br>
-            <input type="submit" value="Editar perfil">
-        </form>
-    </div>
-</div>
+<form method="POST" action="index.php?c=user&a=update&id=<?= $user->id ?>">
+    Username: <input type="text" name="username" value="<?php if (isset($user)){echo $user->username;}?>">
+    <?php if(isset($user->errors)){ echo $user->errors->on('username'); }?>
+    <br>
+    Email: <input type="text" name="email" value="<?php if (isset($user)){echo $user->email;}?>">
+    <?php if(isset($user->errors)){ echo $user->errors->on('email'); }?>
+    <br>
+    Telefone: <input type="number" name="telefone" value="<?php if (isset($user)){echo $user->telefone;}?>">
+    <?php if(isset($user->errors)){ echo $user->errors->on('telefone'); }?>
+    <br>
+    NIF: <input type="number" name="nif" value="<?php if (isset($user)){echo $user->nif;}?>">
+    <?php if(isset($user->errors)){ echo $user->errors->on('nif'); }?>
+    <br>
+    Morada: <input type="text" name="morada" value="<?php if (isset($user)){echo $user->morada;}?>">
+    <?php if(isset($user->errors)){ echo $user->errors->on('morada'); }?>
+    <br>
+    Codigo Postal: <input type="text" name="codigopostal" value="<?php if (isset($user)){echo $user->codigopostal;}?>">
+    <?php if(isset($user->errors)){ echo $user->errors->on('codigopostal'); }?>
+    <br>
+    Localidade: <input type="text" name="localidate" value="<?php if (isset($user)){echo $user->localidade;}?>">
+    <?php if(isset($user->errors)){ echo $user->errors->on('localidade'); }?>
+    <br>
+    Role: <select name="role">
+        <option value="<?php if (isset($user)){echo $user->role;}?>">Admin</option>
+        <option value="<?php if (isset($user)){echo $user->role;}?>">Funcionario</option>
+        <option value="<?php if (isset($user)){echo $user->role;}?>">Cliente</option>
+    </select>
+    <?php if(isset($user->errors)){ echo $user->errors->on('role'); }?>
+    <input type="submit" value="Alterar">
+</form>

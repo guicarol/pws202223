@@ -5,7 +5,9 @@ class HomeController extends Controller
 {
     public function index()
     {
-            $this->renderView('home', 'index');
+        $auth = new Auth();
+        $user = $auth ->getUser();
+        $this->renderView('home', 'index',['user'=>$user]);
     }
 
 }
