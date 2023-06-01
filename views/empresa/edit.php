@@ -3,10 +3,6 @@
 <div class="row">
     <div class="col-sm-12">
         <form action="./index.php?c=empresa&a=update&id=<?=$empresa->id?>" method="POST">
-            <br>
-            <label for="id">Id:</label><br>
-            <input class="input-forms" type="text" name="id" value="<?=$empresa->id?>" disabled><br>
-            <p></p>
             <label for="designacaosocial">Designação Social:</label><br>
             <input class="input-forms" type="text" name="designacaosocial" value="<?=$empresa->designacaosocial?>"><br>
             <p><?php if(isset($empresa->errors)){ echo $empresa->errors->on('designacaosocial'); }?></p>

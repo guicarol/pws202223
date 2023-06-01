@@ -95,18 +95,12 @@
         }
     }
     ?>
-    Role: <input type="text" name="role" value="<?php if (isset($user)) {echo $user->role;} ?>">
-    <?php
-    if(isset($user->errors)) {
-        if (is_array($user->errors->on('role'))) {
-            foreach ($user->errors->on('role') as $error) {
-                echo $error . '<br>';
-            }
-        } else {
-            echo $user->errors->on('role');
-        }
-    }
-    ?>
+    Role: <select name="role">
+        <option></option>
+        <option value="<?php if (isset($user)){echo $user->role;}?>Admin"> Admin</option>
+        <option value="<?php if (isset($user)){echo $user->role;}?>Funcionario">Funcionario</option>
+        <option value="<?php if (isset($user)){echo $user->role;}?>Cliente">Cliente</option>
+    </select>
     </p>
     <input type="submit" value="Criar">
 </form>

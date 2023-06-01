@@ -17,9 +17,11 @@ return [
     ],
     'empresa' => [
         'index' => ['GET', 'EmpresaController', 'index'],
+        'create' => ['GET', 'EmpresaController', 'create'],
         'show' => ['GET', 'EmpresaController', 'show'],
         'edit' => ['GET', 'EmpresaController', 'edit'],
-        'update' => ['POST', 'EmpresaController', 'update']
+        'update' => ['POST', 'EmpresaController', 'update'],
+        'store' => ['POST', 'EmpresaController', 'store'],
     ],
     'servico' => [
         'index' => ['GET', 'ServicoController', 'index'],
