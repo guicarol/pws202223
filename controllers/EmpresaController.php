@@ -12,6 +12,16 @@ class EmpresaController extends Controller
         }
     }
 
+    public function create(){
+        if (Empresas::all() == null){
+            $this->renderView('empresa','create');
+        }
+        else{
+            $empresas = Empresas::all();
+            $this->renderView('empresa','index',['empresas' => $empresas]);
+        }
+    }
+
     public function show($id)
     {
         $empresa = Empresas::find($id);
@@ -50,9 +60,7 @@ class EmpresaController extends Controller
         }
     }
 
-    public function create(){
-        $this->renderView('empresa','create');
-    }
+
 
     public function store()
     {
