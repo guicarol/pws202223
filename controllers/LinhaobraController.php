@@ -2,33 +2,44 @@
 require_once 'Controller.php';
 require_once './models/Servico.php';
 
-class LinhaobraController extends Controller
+class LinhaobraController extends AuthController
 {
-
-    public function create($id_folhaobra,$id_servico)
+    public function __construct()
     {
-        $folhaobra=Folhaobra::find($id_folhaobra);
+        $this->authenticationFilter();
+        if($this->getRole()=='Cliente'){
+            $this->redirectToRoute('home','index');
+        }
+    }
+    public function create($folhaobra_id,$servico_id)
+    {
+        $folhaobra=Folhaobra::find($folhaobra_id);
         //mostrar a vista create
-        if($id_servico!=0){
-            $servico=Servico::find($id_servico);
+        if($servico_id!=0){
+            $linhaobra=Linhaobra::find('all', array('conditions' => "folhaobra_id LIKE '%$folhaobra_id'"));
+            var_dump($linhaobra);
+            die();
+            $servico=Servico::find($servico_id);
+            $folhaobra->valortotal=$servico->precohora*$linhaobra->quantidade;
 
-            $this->renderView('linhasobra', 'create',['folhaobra'=>$folhaobra,'servico'=>$servico]);
+            $this->renderView('linhasobra', 'create',['folhaobra'=>$folhaobra,'servico'=>$servico,'linhasobra'=>0]);
 
         }else{
-            $this->renderView('linhasobra', 'create',['folhaobra'=>$folhaobra]);
+            $this->renderView('linhasobra', 'create',['folhaobra'=>$folhaobra,'servico'=>$servico,'linhasobra'=>0]);
 
         }
-
-
     }
 
-    public function store($folhaobra_id){
-        $chapter = new Linhaobra($this-> getHTTPPost());
-        if($chapter->is_valid()){
-            $chapter->save();
-            $this->redirectToRoute('chapter','index',['id'=>$chapter->book_id]);
+    public function store($folhaobra_id,$servico_id){
+        $linhaobra = new Linhaobra($this->getHTTPPost());
+        $linhaobra->folhaobra_id=$folhaobra_id;
+        $linhaobra->servico_id=$servico_id;
+
+        if($linhaobra->is_valid()){
+            $linhaobra->save();
+            $this->redirectToRoute('linhasobra','create',['folhaobra_id'=>$folhaobra_id,'servico_id'=>$servico_id]);
         } else {
-            $this->renderView('chapter', 'create', ['chapter'=>$chapter]);
+            $this->renderView('linhaobra', 'create', ['linhaobra'=>$linhaobra]);
         }
     }
 

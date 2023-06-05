@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col">
-        <form action="index.php?c=produto&a=escolha_servico&id_folhaobra=<?=$folhaobra_id?>" method="post">
+        <form action="index.php?c=produto&a=escolha_servico&folhaobra_id=<?=$folhaobra_id?>" method="post">
             <div class="input-group mb-3">
                 <input type="search" class="form-control" name="pesquisa" placeholder="Pesquisar produto pelo nome" aria-label="Recipient's username" aria-describedby="basic-addon2">
                 <div class="input-group-append">
@@ -29,7 +29,7 @@
                     <td class="text-center"><?=$servico->precohora?>€</td>
                     <td class="text-center"><?= $servico->iva->percentagem?> %</td>
                     <td class="text-center">
-                        <a href="index.php?c=linhasobra&a=create&id_folhaobra=<?=$folhaobra_id?>&id_servico=<?=$servico->id?>"
+                        <a href="index.php?c=linhasobra&a=create&folhaobra_id=<?=$folhaobra_id?>&servico_id=<?=$servico->id?>"
                            class="btn btn-info" role="button">Adicinar produto</a>
                     </td>
                 </tr>

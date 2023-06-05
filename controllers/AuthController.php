@@ -17,6 +17,7 @@ class AuthController extends Controller
         $sessao = $auth->checkAuth($_POST['username'], ($_POST['password']));
         if($sessao) {
             $user = $auth ->getUser();
+            $_SESSION['id']=$user->id;
             switch ($user->role){
                 case 'Cliente':
                     $this->redirectToRoute('home', 'index');
@@ -49,7 +50,7 @@ class AuthController extends Controller
 
     public function getRole()
     {
-        $user = User::find([$_SESSION['id']]);
+        $user = User::find($_SESSION['id']);
 
         return $user->role;
     }

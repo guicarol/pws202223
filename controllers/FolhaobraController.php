@@ -7,6 +7,9 @@ class FolhaobraController extends AuthController
     public function __construct()
     {
         $this->authenticationFilter();
+        if($this->getRole()=='Cliente'){
+            $this->redirectToRoute('home','index');
+        }
     }
 
     public function index()
@@ -40,7 +43,7 @@ class FolhaobraController extends AuthController
             if($folhaobra->is_valid()){
                 $folhaobra->save();
                 //$this->redirectToRoute('linhasfatura', 'create',['folhaobra' => $folhaobra]);
-                $this->redirectToRoute('linhasobra', "create",['id_folhaobra'=>$folhaobra->id,'id_servico'=>0]);
+                $this->redirectToRoute('linhasobra', "create",['folhaobra_id'=>$folhaobra->id,'servico_id'=>0]);
             } else {
                 //mostrar vista edit passando o modelo como parâmetro
                 $this->renderView('folhaobra','create', ['folhaobra' => $folhaobra]);

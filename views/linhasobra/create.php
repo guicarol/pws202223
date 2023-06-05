@@ -4,7 +4,7 @@
 <div class="row">
     <div class="col-sm-12">
 
-        <form method="POST" action=<?php echo'./index.php?c=linhasobra&a=store&folhaobra_id='. $folhaobra->id?>
+        <form method="POST" action=<?php echo 'index.php?c=linhasobra&a=store&folhaobra_id='. $folhaobra->id.'&servico_id='.$servico->id ?>
             <br>
             <div class="boxer">
                 <div class="row"id="row1">
@@ -36,7 +36,7 @@
                                 <div class="col">
                                     <label>Referencia do produto</label>
                                     <?php if(isset($servico)){?>
-                                        <input type="text" name="referencia" class="form-control" value="<?=$servico->referencia?>">
+                                        <input type="text" name="valor" class="form-control" value="<?=$servico->precohora?>">
                                         <p><?php
                                             if(isset($naoproduto) and $naoproduto) {
                                                 echo 'Produto inexistente';

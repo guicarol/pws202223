@@ -5,7 +5,13 @@ require_once 'AuthController.php';
 class IvaController extends AuthController
 {
 
-
+    public function __construct()
+    {
+        $this->authenticationFilter();
+        if($this->getRole()=='Cliente'){
+            $this->redirectToRoute('home','index');
+        }
+    }
 
     public function index()
     {

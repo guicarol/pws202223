@@ -1,6 +1,15 @@
 <?php
-class EmpresaController extends Controller
+class EmpresaController extends AuthController
 {
+
+    public function __construct()
+    {
+        $this->authenticationFilter();
+        if($this->getRole()=='Cliente'){
+            $this->redirectToRoute('home','index');
+        }
+    }
+
     public function index()
     {
         if (Empresas::all() == null){
