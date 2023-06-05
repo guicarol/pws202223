@@ -70,4 +70,12 @@ class Controller
             header('Location:index.php?'.INVALID_ACCESS_ROUTE);
         }
     }
+
+    protected function authorizationFilter($roles)
+    {
+        $auth = new Auth();
+        if (!$auth->isLoggedInAs($roles)) {
+            header('Location:index.php?'.INVALID_ACCESS_ROUTE);
+        }
+    }
 }

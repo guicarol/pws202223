@@ -38,4 +38,18 @@ class Auth
         $user = User::find($_SESSION['id']);
         return $user;
     }
+
+    public function getRole()
+    {
+        $user = User::find($_SESSION['id']);
+
+        return $user->role;
+    }
+
+    public function isLoggedInAs($roles=[]){
+        if($this->isLoggedIn()){
+            $role=$this->getRole();
+            return in_array($role,$roles);
+        }
+    }
 }

@@ -6,15 +6,14 @@ class FolhaobraController extends AuthController
 {
     public function __construct()
     {
-        $this->authenticationFilter();
-        if($this->getRole()=='Cliente'){
-            $this->redirectToRoute('home','index');
-        }
+        $this->authorizationFilter(['Funcionario','Cliente','Admin']);
+
     }
 
     public function index()
     {
         $folhasobras=Folhaobra::all();
+
 
         $this->renderView('folhasobra', 'index',['folhasobras'=>$folhasobras]); //chama a vista index do FolhaobraController
 

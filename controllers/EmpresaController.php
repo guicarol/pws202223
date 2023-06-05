@@ -4,10 +4,8 @@ class EmpresaController extends AuthController
 
     public function __construct()
     {
-        $this->authenticationFilter();
-        if($this->getRole()=='Cliente'){
-            $this->redirectToRoute('home','index');
-        }
+        $this->authorizationFilter(['Admin']);
+
     }
 
     public function index()

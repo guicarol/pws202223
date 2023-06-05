@@ -48,12 +48,5 @@ class AuthController extends Controller
         }
     }
 
-    public function getRole()
-    {
-        $user = User::find($_SESSION['id']);
-
-        return $user->role;
-    }
-
 }
 

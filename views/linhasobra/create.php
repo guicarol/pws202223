@@ -100,11 +100,11 @@
                             <div class="row">
                                 <div class="col">
                                     <label>Descrição do produto</label>
-                                    <input type="text" class="form-control" value="<?= $linhasobra->produto->descricao ?>" disabled>
+                                    <input type="text" class="form-control" value="<?= $linhasobra->servico->descricao ?>" disabled>
                                 </div>
                                 <div class="col">
                                     <label>Referencia</label>
-                                    <input type="text" class="form-control" value="<?= $linhasobra->produto->referencia ?>" disabled>
+                                    <input type="text" class="form-control" value="<?= $linhasobra->servico->referencia ?>" disabled>
                                 </div>
                                 <div class="col">
                                     <label>Valor</label>
@@ -112,7 +112,7 @@
                                 </div>
                                 <div class="col">
                                     <label>Valor Iva</label>
-                                    <input type="text" class="form-control" value="<?= number_format($linhasobra->valoriva, 2);?>€" disabled>
+                                    <input type="text" class="form-control" value="<?= number_format($linhasobra->valor, 2);?>€" disabled>
                                 </div>
                                 <div class="col">
                                     <label>Quantidade</label>

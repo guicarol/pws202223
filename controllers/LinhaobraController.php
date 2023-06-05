@@ -6,23 +6,21 @@ class LinhaobraController extends AuthController
 {
     public function __construct()
     {
-        $this->authenticationFilter();
-        if($this->getRole()=='Cliente'){
-            $this->redirectToRoute('home','index');
-        }
+        $this->authorizationFilter(['Funcionario','Cliente','Admin']);
+
     }
     public function create($folhaobra_id,$servico_id)
     {
         $folhaobra=Folhaobra::find($folhaobra_id);
         //mostrar a vista create
         if($servico_id!=0){
-            $linhaobra=Linhaobra::find('all', array('conditions' => "folhaobra_id LIKE '%$folhaobra_id'"));
-            var_dump($linhaobra);
-            die();
+            $quantidade=Linhaobra::find('quantidade', array('conditions' => "folhaobra_id LIKE '%$folhaobra_id'"));
             $servico=Servico::find($servico_id);
-            $folhaobra->valortotal=$servico->precohora*$linhaobra->quantidade;
+            $folhaobra->valortotal=$servico->precohora*$quantidade->quantidade;
+            $folhaobra->ivatotal=($servico->iva->percentagem*$folhaobra->valortotal)/100;
+            $linhaobra=Linhaobra::find('all', array('conditions' => "folhaobra_id LIKE '%$folhaobra_id'"));
 
-            $this->renderView('linhasobra', 'create',['folhaobra'=>$folhaobra,'servico'=>$servico,'linhasobra'=>0]);
+            $this->renderView('linhasobra', 'create',['folhaobra'=>$folhaobra,'servico'=>$servico,'linhasobra'=>$linhaobra]);
 
         }else{
             $this->renderView('linhasobra', 'create',['folhaobra'=>$folhaobra,'servico'=>$servico,'linhasobra'=>0]);
@@ -34,9 +32,15 @@ class LinhaobraController extends AuthController
         $linhaobra = new Linhaobra($this->getHTTPPost());
         $linhaobra->folhaobra_id=$folhaobra_id;
         $linhaobra->servico_id=$servico_id;
+        $servico=Servico::find($servico_id);
 
         if($linhaobra->is_valid()){
             $linhaobra->save();
+            $folhaobra=Folhaobra::find($folhaobra_id);
+            $folhaobra->data=\Carbon\Carbon::now();
+            $folhaobra->valortotal=$servico->precohora*$linhaobra->quantidade;
+            $folhaobra->ivatotal=($servico->iva->percentagem*$folhaobra->valortotal)/100;
+            $folhaobra->save();
             $this->redirectToRoute('linhasobra','create',['folhaobra_id'=>$folhaobra_id,'servico_id'=>$servico_id]);
         } else {
             $this->renderView('linhaobra', 'create', ['linhaobra'=>$linhaobra]);

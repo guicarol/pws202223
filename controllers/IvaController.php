@@ -7,10 +7,8 @@ class IvaController extends AuthController
 
     public function __construct()
     {
-        $this->authenticationFilter();
-        if($this->getRole()=='Cliente'){
-            $this->redirectToRoute('home','index');
-        }
+        $this->authorizationFilter(['Funcionario','Admin']);
+
     }
 
     public function index()
