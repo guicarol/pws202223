@@ -3,15 +3,13 @@ require_once 'Controller.php';
 require_once './models/Servico.php';
 require_once './models/Folhaobra.php';
 
-class ServicoController extends AuthController
+class ServicoController extends Controller
 {
 
     public function __construct()
     {
         $this->authenticationFilter();
-        if($this->getRole()=='Cliente'){
-            $this->redirectToRoute('home','index');
-        }
+        $this->authorizationFilter(['Funcionario','Admin']);
     }
 
     public function index()

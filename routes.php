@@ -45,6 +45,8 @@ return [
     ],
     'user' => [
         'index' => ['GET', 'UserController', 'index'],
+        'select' => ['GET', 'UserController', 'select'],
+        'selectfilter' => ['POST', 'UserController', 'selectfilter'],
         'create' => ['GET', 'UserController', 'create'],
         'store' => ['POST', 'UserController', 'store'],
         'show' => ['GET', 'UserController', 'show'],
@@ -63,6 +65,7 @@ return [
         'delete' => ['GET', 'FolhaobraController', 'delete']
     ],
     'linhasobra' => [
+        'index' => ['GET', 'LinhaobraController', 'index'],
         'create' => ['GET', 'LinhaobraController', 'create'],
         'store' => ['POST', 'LinhaobraController', 'store'],
         'show' => ['GET', 'LinhaobraController', 'show'],

@@ -18,13 +18,13 @@
                         <td class="text-center"><?= number_format($folhasobra->valortotal,2); echo'€'; ?></td>
                         <td class="text-center"><?= number_format($folhasobra->ivatotal,2); echo'€'; ?></td>
                         <td class="text-center"><?= $folhasobra->estado ?></td>
-                        <td class="text-center"><?= $folhasobra->user->username ?></td>
-                        <td class="text-center"><?= $folhasobra->user->username ?></td>
+                        <td class="text-center"><?= $folhasobra->func->username ?></td>
+                        <td class="text-center"><?= $folhasobra->cliente->username ?></td>
                         <td class="text-center">
                             <?php
                                 if($folhasobra->estado == "em lançamento"){
                                     echo '<a href="index.php?c=linhasobra&a=create&folhaobra_id='. $folhasobra->id .'&servico_id=10"
-                                            class="btn btn-info" role="button">Adicinar produto</a>';
+                                            class="btn btn-info" role="button">Adicinar Serviço</a>';
                                 }else if($folhasobra->estado == "emitida"){
                                     echo '<a target="_blank" href="index.php?c=linhasobra&a=imprimir&folhaobra_id='. $folhasobra->id .'&servico_id='.$folhasobra->sevico->id.'"
                                             class="btn btn-info" role="button">Imprimir</a>

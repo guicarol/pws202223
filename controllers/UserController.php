@@ -8,7 +8,7 @@ class UserController extends Controller
 
     public function index()
     {
-        $users= User::all();
+        $users = User::all();
         $this->renderView('user', 'index', ['users' => $users]);
     }
 
@@ -16,9 +16,9 @@ class UserController extends Controller
     {
         $user = User::find($id);
         if (is_null($user)) {
-            $this->redirectToRoute('user','index');
+            $this->redirectToRoute('user', 'index');
         } else {
-            $this->renderView('user','show', ['user' => $user]);
+            $this->renderView('user', 'show', ['user' => $user]);
         }
     }
 
@@ -26,20 +26,20 @@ class UserController extends Controller
     {
         $user = User::find($id);
         if (is_null($user)) {
-            $this->redirectToRoute('user','index');
+            $this->redirectToRoute('user', 'index');
         } else {
-            $this->renderView('user','edit', ['user' => $user]);
+            $this->renderView('user', 'edit', ['user' => $user]);
         }
     }
 
     public function update($id)
     {
         $user = User::find($id);
-        $user->update_attributes($this-> getHTTPPost());
-        if($user->is_valid()){
+        $user->update_attributes($this->getHTTPPost());
+        if ($user->is_valid()) {
             $user->save();
             //redirecionar para o index
-            $this->redirectToRoute('user','index');
+            $this->redirectToRoute('user', 'index');
         } else {
             //mostrar vista edit passando o modelo como parâmetro
             $this->renderView('user', 'edit', ['user' => $user]);
@@ -66,9 +66,9 @@ class UserController extends Controller
     public function create_user()
     {
         //mostrar a vista create
-        if ($this->getRole() == 'admin'){
-            $this->renderView('user','create_user');
-        }else{
+        if ($this->getRole() == 'admin') {
+            $this->renderView('user', 'create_user');
+        } else {
             $this->redirectToRoute('user', 'create_cliente');
         }
 
@@ -76,14 +76,13 @@ class UserController extends Controller
 
     public function store_user()
     {
-        if ($this->getRole() == 'admin'){
+        if ($this->getRole() == 'admin') {
             $user = new User();
 
             $user->username = $_POST['username'];
-            if($_POST['password']!= ''){
+            if ($_POST['password'] != '') {
                 $user->password = md5($_POST['password']);
-            }
-            else{
+            } else {
                 $user->password = $_POST['password'];
             }
             $user->email = $_POST['email'];
@@ -94,41 +93,51 @@ class UserController extends Controller
             $user->localidade = $_POST['localidade'];
             $user->role = $_POST['role'];
 
-            if($user->is_valid()){
+            if ($user->is_valid()) {
                 $user->save();
                 //redirecionar para o index
                 $this->redirectToRoute('user', 'index_all_user');
             } else {
                 //mostrar vista edit passando o modelo como parâmetro
-                $user->password=$_POST['password'];
-                $this->renderView('user','create_user', ['cliente' => $user]);
+                $user->password = $_POST['password'];
+                $this->renderView('user', 'create_user', ['cliente' => $user]);
             }
-        }else{
+        } else {
             $this->redirectToRoute('user', 'create_user');
         }
 
     }
+
     public function delete($id)
     {
         $user = User::find($id);
         $user->delete();
-        $this->redirectToRoute('user','index');
+        $this->redirectToRoute('user', 'index');
 
     }
 
-    public function index_all_user()
+    public function select()
+    {
+        $users = User::find('all', array('conditions' => " role LIKE 'Cliente'"));
+
+        //mostrar a vista index passando os dados por parâmetro
+        $this->renderView('user', 'select', ['users' => $users]);
+
+    }
+
+    public function selectfilter()
     {
 
+        if (isset($_POST['pesquisa'])) {
+            $pesquisa = $_POST['pesquisa'];
+            $users = User::find('all', array('conditions' => "username LIKE '%$pesquisa%' and role LIKE 'Cliente'"));
 
-            if (isset($_POST['pesquisa'])) {
-                $pesquisa = $_POST['pesquisa'];
-            } else {
-                $pesquisa = '';
-            }
-            $users = User::find('all', array('conditions' => "username LIKE '%$pesquisa%' or role LIKE '%$pesquisa%'"));
+        } else {
+            $users = User::find('all', array('conditions' => " role LIKE 'Cliente'"));
+        }
 
-            //mostrar a vista index passando os dados por parâmetro
-            $this->renderView('user', 'index_all_user', ['users' => $users]);
+        //mostrar a vista index passando os dados por parâmetro
+        $this->renderView('user', 'select', ['users' => $users]);
 
     }
 }

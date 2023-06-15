@@ -1,4 +1,4 @@
-<h2 class="text-left top-space">Minhas faturas</h2>
+<h2 class="text-left top-space">Minhas folhas obra</h2>
 <h2 class="top-space"></h2>
 <div class="row">
     <div class="col-sm-12">
@@ -23,9 +23,9 @@
                         <td class="text-center">
                             <?php
                             if($folhaobra->estado == "emitida"){
-                                echo '<a target="_blank" href="index.php?c=folhaobra&a=imprimir&id_fatura='. $folhaobra->id .'"
+                                echo '<a target="_blank" href="index.php?c=folhaobra&a=imprimir&folhaobra_id='. $folhaobra->id .'"
                                         class="btn btn-info" role="button">Imprimir</a>
-                                       <a href="index.php?c=folhaobra&a=show&id_fatura='. $folhaobra->id .'"
+                                       <a href="index.php?c=folhaobra&a=show&folhaobra_id='. $folhaobra->id .'"
                                             class="btn btn-info" role="button">show</a>';
                             }
                             ?>
@@ -34,7 +34,7 @@
                     </tr>
             <?php } else { ?>
                 <tr>
-                    <td colspan="6" class="text-center "> Não tem nenhuma fatura</td>
+                    <td colspan="6" class="text-center "> Não tem nenhuma folha de obra</td>
                 </tr
             <?php }  ?>
             </tbody>

@@ -2,54 +2,55 @@
 
 require_once 'controllers/AuthController.php';
 
-class FolhaobraController extends AuthController
+class FolhaobraController extends Controller
 {
     public function __construct()
     {
-        $this->authorizationFilter(['Funcionario','Cliente','Admin']);
+        $this->authorizationFilter(['Funcionario', 'Cliente', 'Admin']);
 
     }
 
     public function index()
     {
-        $folhasobras=Folhaobra::all();
+        $folhasobras = Folhaobra::all();
 
 
-        $this->renderView('folhasobra', 'index',['folhasobras'=>$folhasobras]); //chama a vista index do FolhaobraController
+        $this->renderView('folhasobra', 'index', ['folhasobras' => $folhasobras]); //chama a vista index do FolhaobraController
 
     }
 
     public function create()
     {
+        #find empresa
 
-            //mostrar a vista create
-            $cliente = User::all();
-            $this->renderView('folhasobra','create', ['user' => $cliente]);
+        $empresa = Empresas::find(1);
+
+        //mostrar a vista create
+        $this->renderView('folhasobra', 'create', ['empresa' => $empresa]);
 
     }
 
     public function store($id_cliente)
     {
-        if($this->GetRole() != 'cliente'){
-            $folhaobra = new Folhaobra();
+//        $auth=new Auth();
+        $folhaobra = new Folhaobra();
+        $auth = new Auth();
+        $folhaobra->data = \Carbon\Carbon::now();
+        $folhaobra->estado = "em lançamento";
+        $folhaobra->valortotal = 0;
+        $folhaobra->ivatotal = 0;
+        $folhaobra->user_id = $auth->getUser()->id;
+        $folhaobra->cliente_id = $id_cliente;
 
-            $folhaobra->estado = "em lançamento";
-            $folhaobra->valortotal = 0;
-            $folhaobra->ivatotal = 0;
-            $folhaobra->user_id = $_SESSION['id'];
-            $folhaobra->cliente_id = $id_cliente;
-
-            if($folhaobra->is_valid()){
-                $folhaobra->save();
-                //$this->redirectToRoute('linhasfatura', 'create',['folhaobra' => $folhaobra]);
-                $this->redirectToRoute('linhasobra', "create",['folhaobra_id'=>$folhaobra->id,'servico_id'=>0]);
-            } else {
-                //mostrar vista edit passando o modelo como parâmetro
-                $this->renderView('folhaobra','create', ['folhaobra' => $folhaobra]);
-            }
-        }else {
-            $this->redirectToRoute('auth', 'logout');
+        if ($folhaobra->is_valid()) {
+            $folhaobra->save();
+            //$this->redirectToRoute('linhasfatura', 'create',['folhaobra' => $folhaobra]);
+            $this->redirectToRoute('linhasobra', "index", ['folhaobra_id' => $folhaobra->id]);
+        } else {
+            //mostrar vista edit passando o modelo como parâmetro
+            $this->renderView('folhaobra', 'create', ['folhaobra' => $folhaobra]);
         }
+
     }
 
     public function show()
