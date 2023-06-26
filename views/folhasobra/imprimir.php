@@ -31,10 +31,10 @@
                             <div class="boxer">
                                 <div class="row"id="row1">
                                     <div class="col-3">
-                                    <p type="text"> Cliente: <?= $fatura->user_cliente->username?><text>
-                                    <p type="text"> Email: <?= $fatura->user_cliente->email?><text>
-                                    <p type="text"> Nif: <?= $fatura->user_cliente->nif?><text>
-                                    <p type="text"> data: <?= date('Y/m/d H:i:s', strtotime($fatura->data)); ?><text>
+                                    <p type="text"> Cliente: <?= $folhaobra->cliente->username?><text>
+                                    <p type="text"> Email: <?= $folhaobra->cliente->email?><text>
+                                    <p type="text"> Nif: <?= $folhaobra->cliente->nif?><text>
+                                    <p type="text"> data: <?= date('Y/m/d H:i:s', strtotime($folhaobra->data)); ?><text>
                                     <br>
                                     </div>
                                 </div>
@@ -55,13 +55,13 @@
                                             <th class="text-center"><h4>Valor</h4></th>
                                             </thead>
                                             <tbody>
-                                            <?php if($linhasfatura != null){foreach ($linhasfatura as $linhafatura) { ?>
+                                            <?php if($linhasobra != null){foreach ($folhaobra->linhaobras as $linhaobra) { ?>
                                                 <tr>
-                                                    <td class="text-center"><?= $linhafatura->produto->descricao ?></td>
-                                                    <td class="text-center"><?= $linhafatura->produto->referencia ?></td>
-                                                    <td class="text-center"><?= $linhafatura->quantidade ?></td>
-                                                    <td class="text-center"><?= number_format($linhafatura->valoriva, 2); ?></td>
-                                                    <td class="text-center"><?= number_format($linhafatura->valor, 2); ?></td>
+                                                    <td class="text-center"><?= $linhaobra->servico->descricao ?></td>
+                                                    <td class="text-center"><?= $linhaobra->servico->referencia ?></td>
+                                                    <td class="text-center"><?= $linhaobra->quantidade ?></td>
+                                                    <td class="text-center"><?= number_format($linhaobra->servico->iva->percentagem, 2); ?></td>
+                                                    <td class="text-center"><?= number_format($linhaobra->valor, 2); ?></td>
                                                 </tr>
                                             <?php } }?>
                                             </tbody>
@@ -76,12 +76,12 @@
                                     </div>
                                     <div class="col-1 end-0">
                                         <label for="ivatotal">Iva total:</label>
-                                        <label for="ivatotal"><?php if(isset($fatura)) { echo number_format($fatura->ivatotal,2); }?>€</label>
+                                        <label for="ivatotal"><?php if(isset($folhaobra)) { echo number_format($folhaobra->ivatotal,2); }?>€</label>
                                         <br>
                                     </div>
                                     <div class="col-1 end-0">
                                         <label for="valortotal">Valor total:</label>
-                                        <label for="valortotal" style="font-weight: bold; font-size: larger" ><?php if(isset($fatura)) { echo number_format($fatura->valortotal,2); }?>€</label>
+                                        <label for="valortotal" style="font-weight: bold; font-size: larger" ><?php if(isset($folhaobra)) { echo number_format($folhaobra->valortotal,2); }?>€</label>
                                     </div>
                                 </div>
                             </div>
@@ -96,7 +96,7 @@
                     <div class="col-8">
                     </div>
                     <div class="col-3 text-end">
-                        <p type="text"> Nome do funcionario: <?= $fatura->user_empregado->username?><text>
+                        <p type="text"> Nome do funcionario: <?= $folhaobra->user->username?><text>
                     </div>
                     <div class="col-1">
                     </div>

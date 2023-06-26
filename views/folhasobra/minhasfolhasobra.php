@@ -15,18 +15,20 @@
             <?php if($folhaobras != null){
                 foreach ($folhaobras as $folhaobra) { ?>
                     <tr>
-                        <td class="text-center"><?= $folhaobra = $folhaobra;
+                        <td class="text-center"><?=
                             date('Y/m/d H:i:s', strtotime($folhaobra->data)); ?></td>
                         <td class="text-center"><?= number_format($folhaobra->valortotal,2); echo'€'; ?></td>
                         <td class="text-center"><?= number_format($folhaobra->ivatotal,2); echo'€'; ?></td>
-                        <td class="text-center"><?= $folhaobra->user_empregado->username ?></td>
+                        <td class="text-center"><?= $folhaobra->user->username ?></td>
                         <td class="text-center">
                             <?php
                             if($folhaobra->estado == "emitida"){
-                                echo '<a target="_blank" href="index.php?c=folhaobra&a=imprimir&folhaobra_id='. $folhaobra->id .'"
-                                        class="btn btn-info" role="button">Imprimir</a>
+                                echo '<a target="_blank" href="index.php?c=folhasobra&a=imprimir&folhaobra_id='. $folhaobra->id .'"
+                                        class="btn btn-info" role="button">Imprimir</a>';
+                            }else{
+                                echo '
                                        <a href="index.php?c=folhaobra&a=show&folhaobra_id='. $folhaobra->id .'"
-                                            class="btn btn-info" role="button">show</a>';
+                                            class="btn btn-info" role="button">Pagar</a>';
                             }
                             ?>
                         </td>

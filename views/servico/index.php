@@ -25,8 +25,7 @@
                            class="btn btn-info" role="button">Show</a>
                         <a href="index.php?c=servico&a=edit&id=<?= $servico->id ?>"
                            class="btn btn-info" role="button">Edit</a>
-                        <a href="index.php?c=servico&a=delete&id=<?= $servico->id ?>"
-                           class="btn btn-warning" role="button">Delete</a>
+
                     </td>
                 </tr>
             <?php } ?>

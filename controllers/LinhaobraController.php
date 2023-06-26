@@ -79,14 +79,14 @@ var_dump($folhaobra->subtotal);
 
     public function edit($id)
     {
-        $chapter = Linhaobra::find($id);
-        if (is_null($chapter)) {
+        $folhaobra = Folhaobra::find($id);
+        if (is_null($folhaobra)) {
             //TODO redirect to standard error page
             header('Location:index.php?' . INVALID_ACCESS_ROUTE);
 
         } else {
             //mostrar a vista edit passando os dados por parâmetro
-            $this->renderView('chapter', 'edit', ['chapter' => $chapter]);
+            $this->renderView('linhasobra', 'index', ['folhaobra' => $folhaobra]);
 
         }
     }

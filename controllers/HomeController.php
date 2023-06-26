@@ -6,8 +6,14 @@ class HomeController extends Controller
     public function index()
     {
         $auth = new Auth();
-        $user = $auth ->getUser();
-        $this->renderView('home', 'index',['user'=>$user]);
+        $user = $auth->getUser();
+
+        if ($user->role == 'Cliente') {
+            $this->renderView('home', 'index_user', ['user' => $user]);
+        } elseif ($user->role == 'Admin'||'Funcionario') {
+            $this->renderView('home', 'index', ['user' => $user]);
+
+        }
     }
 
 }

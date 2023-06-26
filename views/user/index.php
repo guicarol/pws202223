@@ -11,7 +11,6 @@
             <th><h3>Role</h3></th>
             </thead>
             <tbody>
-            <?php foreach ($users as $user) { ?>
                 <tr>
                     <td><?= $user->id ?></td>
                     <td><?= $user->username ?></td>
@@ -23,18 +22,16 @@
                            class="btn btn-info" role="button">Show</a>
                         <a href="index.php?c=user&a=edit&id=<?= $user->id ?>"
                            class="btn btn-info" role="button">Edit</a>
-                        <a href="index.php?c=user&a=delete&id=<?= $user->id ?>"
-                           class="btn btn-warning" role="button">Delete</a>
+
                     </td>
                 </tr>
-            <?php } ?>
             </tbody>
         </table>
     </div>
     <div class="col-sm-6">
-        <h3>Criar um novo User</h3>
+        <h3>Criar um novo Cliente</h3>
         <p>
-            <a href="index.php?c=user&a=create" class="btn btn-info"
+            <a href="index.php?c=user&a=create_cliente" class="btn btn-info"
                role="button">New</a>
         </p>
     </div>

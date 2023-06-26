@@ -44,7 +44,7 @@ class FolhaobraController extends Controller
 
         if ($folhaobra->is_valid()) {
             $folhaobra->save();
-            //$this->redirectToRoute('linhasfatura', 'create',['folhaobra' => $folhaobra]);
+            //$this->redirectToRoute('linhasobra', 'create',['folhaobra' => $folhaobra]);
             $this->redirectToRoute('linhasobra', "index", ['folhaobra_id' => $folhaobra->id]);
         } else {
             //mostrar vista edit passando o modelo como parâmetro
@@ -63,6 +63,49 @@ class FolhaobraController extends Controller
         $planoPrestacoes = $calculadoraPlano->calculaPlano($credito, $numPrest);
 
         $this->renderView('plano', 'show', ['planoPrestacoes' => $planoPrestacoes, 'despesa' => $despesa, 'numPrest' => $numPrest]);
+
+    }
+
+    public function updatestado($id)
+    {
+        $folhaobra = Folhaobra::find([$id]);
+
+        $folhaobra->estado = "emitida";
+
+        if ($folhaobra->is_valid()) {
+            $folhaobra->save();
+            //redirecionar para o index
+            $faturas = Folhaobra::all();
+            $this->renderView('folhaobra', 'index', ['faturas' => $faturas]);
+        } else {
+            //mostrar vista edit passando o modelo como parâmetro
+            $this->renderView('folhaobra', 'edit', ['folhaobra' => $folhaobra]);
+        }
+
+    }
+
+    public function imprimir($folhaobra_id)
+    {
+        $folhaobra = Folhaobra::find($folhaobra_id);
+        $linhasobra = Linhaobra::find('all', array('conditions' => "folhaobra_id LIKE '%$folhaobra_id'"));
+        $empresa=Empresas::find(1);
+
+        //mostrar a vista index passando os dados por parâmetro
+        $this->renderView('folhasobra', 'imprimir', ['folhaobra' => $folhaobra,'linhasobra'=>$linhasobra,'empresa'=>$empresa]);
+
+    }
+
+    public function minhasfolhasobra()
+    {
+        $auth = new Auth();
+        $user = $auth->getUser();
+
+
+        $folhaobras = Folhaobra::find('all');
+
+        //mostrar a vista index passando os dados por parâmetro
+        $this->renderView('folhasobra', 'minhasfolhasobra', ['folhaobras' => $folhaobras]);
+
 
     }
 }

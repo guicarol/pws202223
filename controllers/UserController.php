@@ -8,11 +8,22 @@ class UserController extends Controller
 
     public function index()
     {
-        $users = User::all();
-        $this->renderView('user', 'index', ['users' => $users]);
+        $auth = new Auth();
+        $user = $auth->getUser();
+
+        if ($user->role == 'Funcionario') {
+            $this->renderView('user', 'index', ['user' => $user]);
+        } elseif ($user->role == 'Admin') {
+            $users = User::all();
+            $this->renderView('user', 'index_all_user', ['users' => $users]);
+        } elseif ($user->role == 'Cliente') {
+            $this->renderView('user', 'show', ['user' => $user]);
+        }
+
     }
 
-    public function show($id)
+    public
+    function show($id)
     {
         $user = User::find($id);
         if (is_null($user)) {
@@ -22,7 +33,8 @@ class UserController extends Controller
         }
     }
 
-    public function edit($id)
+    public
+    function edit($id)
     {
         $user = User::find($id);
         if (is_null($user)) {
@@ -32,7 +44,8 @@ class UserController extends Controller
         }
     }
 
-    public function update($id)
+    public
+    function update($id)
     {
         $user = User::find($id);
         $user->update_attributes($this->getHTTPPost());
@@ -47,12 +60,14 @@ class UserController extends Controller
         }
     }
 
-    public function create()
+    public
+    function create()
     {
         $this->renderView('user', 'create');
     }
 
-    public function store()
+    public
+    function store()
     {
         $user = new User($this->getHTTPPost());
         if ($user->is_valid()) {
@@ -63,7 +78,8 @@ class UserController extends Controller
         }
     }
 
-    public function create_user()
+    public
+    function create_user()
     {
         //mostrar a vista create
         if ($this->getRole() == 'admin') {
@@ -74,7 +90,8 @@ class UserController extends Controller
 
     }
 
-    public function store_user()
+    public
+    function store_user()
     {
         if ($this->getRole() == 'admin') {
             $user = new User();
@@ -108,7 +125,8 @@ class UserController extends Controller
 
     }
 
-    public function delete($id)
+    public
+    function delete($id)
     {
         $user = User::find($id);
         $user->delete();
@@ -116,7 +134,8 @@ class UserController extends Controller
 
     }
 
-    public function select()
+    public
+    function select()
     {
         $users = User::find('all', array('conditions' => " role LIKE 'Cliente'"));
 
@@ -125,7 +144,8 @@ class UserController extends Controller
 
     }
 
-    public function selectfilter()
+    public
+    function selectfilter()
     {
 
         if (isset($_POST['pesquisa'])) {
@@ -139,5 +159,55 @@ class UserController extends Controller
         //mostrar a vista index passando os dados por parâmetro
         $this->renderView('user', 'select', ['users' => $users]);
 
+    }
+
+    public function create_cliente()
+    {
+        //mostrar a vista create
+        $auth = new Auth();
+        $user = $auth->getUser();
+
+        if ($user->role == 'Funcionario') {
+            $this->renderView('user', 'create_cliente');
+        } else {
+            $this->redirectToRoute('user', 'create_user');
+        }
+
+    }
+
+    public function store_cliente()
+    {
+        $auth = new Auth();
+        $user = $auth->getUser();
+
+        if ($user->role == 'Funcionario') {
+            $cliente = new User();
+
+            $cliente->username = $_POST['username'];
+            if ($_POST['password'] != '') {
+                $cliente->password = $_POST['password'];
+            } else {
+                $cliente->password = $_POST['password'];
+            }
+            $cliente->email = $_POST['email'];
+            $cliente->telefone = $_POST['telefone'];
+            $cliente->nif = $_POST['nif'];
+            $cliente->morada = $_POST['morada'];
+            $cliente->codigopostal = $_POST['codigopostal'];
+            $cliente->localidade = $_POST['localidade'];
+            $cliente->role = 'cliente';
+
+            if ($cliente->is_valid()) {
+                $cliente->save();
+                //redirecionar para o index
+                $this->redirectToRoute('user', 'index');
+            } else {
+                //mostrar vista edit passando o modelo como parâmetro
+                $cliente->password = $_POST['password'];
+                $this->renderView('user', 'create_cliente', ['cliente' => $cliente]);
+            }
+        } else {
+            $this->redirectToRoute('user', 'create_user');
+        }
     }
 }

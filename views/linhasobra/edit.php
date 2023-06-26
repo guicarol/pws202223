@@ -66,13 +66,12 @@
                             </div>
                             <div class="col">
                                 <label>Quantidade</label>
-                                <input type="number" class="form-control" value="<?= $linhasobra->quantidade ?>"
-                                       disabled>
+                                <input type="number" class="form-control" value="<?= $linhasobra->quantidade ?>">
                             </div>
                             <div class="col">
                                 <p></p>
                                 <?php
-                                echo '<a href="index.php?c=linhasobra&a=edit&id=' . $linhasobra->id . '"
+                                echo '<a href="index.php?c=linhasobra&a=delete&id=' . $linhasobra->id . '"
                                             class="btn btn-info" role="button">editar</a>';
 
                                 ?>
@@ -117,15 +116,9 @@
             <div class="row">
                 <div class="col-sm-10"></div>
                 <div class="col-sm-2">
-                    <?php
-                    echo '<a href="index.php?c=folhasobra&a=updateestado&id=' . $folhaobra->id . '"
-                                            class="btn btn-info" role="button">Emitir</a>';
-
-                    ?><?php
-                    echo '<a href="index.php?c=folhasobra&a=index"
-                                            class="btn btn-info" role="button">Guardar</a>';
-
-                    ?>
+                    <a class="nav-link" href="./index.php?c=folhaobra&a=updateestado&id=<?= $folhaobra->id ?>">
+                        <button class="btn w-100 p-2 btn-info">Emitir folha obra</button>
+                    </a>
                 </div>
             </div>
         <?php } ?>

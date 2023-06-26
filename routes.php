@@ -53,16 +53,21 @@ return [
         'edit' => ['GET', 'UserController', 'edit'],
         'update' => ['POST', 'UserController', 'update'],
         'delete' => ['GET', 'UserController', 'delete'],
-        'index_all_user' => ['GET', 'UserController', 'index_all_user']
+        'index_all_user' => ['GET', 'UserController', 'index_all_user'],
+        'create_cliente' => ['GET', 'UserController', 'create_cliente'],
+        'store_cliente' => ['POST', 'UserController', 'store_cliente']
+
     ],
     'folhasobra' => [
         'index' => ['GET', 'FolhaobraController', 'index'],
+        'imprimir' => ['GET', 'FolhaobraController', 'imprimir'],
         'create' => ['GET', 'FolhaobraController', 'create'],
         'store' => ['GET', 'FolhaobraController', 'store'],
         'show' => ['GET', 'FolhaobraController', 'show'],
         'edit' => ['GET', 'FolhaobraController', 'edit'],
         'update' => ['POST', 'FolhaobraController', 'update'],
-        'delete' => ['GET', 'FolhaobraController', 'delete']
+        'delete' => ['GET', 'FolhaobraController', 'delete'],
+            'minhasfolhasobra' => ['GET', 'FolhaobraController', 'minhasfolhasobra']
     ],
     'linhasobra' => [
         'index' => ['GET', 'LinhaobraController', 'index'],
@@ -74,6 +79,8 @@ return [
         'delete' => ['GET', 'LinhaobraController', 'delete']
     ],
     'home' => [
-        'index' => ['GET', 'HomeController', 'index']
+        'index' => ['GET', 'HomeController', 'index'],
+        'index_user' => ['GET', 'HomeController', 'index_user']
+
     ]
 ];
