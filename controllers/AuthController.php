@@ -23,6 +23,7 @@ class AuthController extends Controller
                     $this->redirectToRoute('home', 'index');
                     break;
                 case 'Funcionario':
+
                 case 'Admin':
                     $this->redirectToRoute('home', 'index');
             }

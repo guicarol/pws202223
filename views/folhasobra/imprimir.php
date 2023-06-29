@@ -42,13 +42,13 @@
 
                                 <div class="card">
                                     <div class="card-header">
-                                        <h4>Lista de produtos</h4>
+                                        <h4>Lista de serviços</h4>
                                     </div>
                                     <div class="card-body">
 
                                         <table class="table tablestriped">
                                             <thead>
-                                            <th class="text-center"><h4>Nome do produto</h4></th>
+                                            <th class="text-center"><h4>Nome do serviço</h4></th>
                                             <th class="text-center"><h4>Referencia</h4></th>
                                             <th class="text-center"><h4>Quantidade</h4></th>
                                             <th class="text-center"><h4>Valor Iva</h4></th>

@@ -1,3 +1,7 @@
+<td>
+    <a href="index.php?c=home&a=index"
+       class="btn btn-info" role="button">Voltar</a>
+</td>
 <h2 class="text-left top-space">Minhas folhas obra</h2>
 <h2 class="top-space"></h2>
 <div class="row">
@@ -27,7 +31,7 @@
                                         class="btn btn-info" role="button">Imprimir</a>';
                             }else{
                                 echo '
-                                       <a href="index.php?c=folhaobra&a=show&folhaobra_id='. $folhaobra->id .'"
+                                       <a href="index.php?c=folhasobra&a=pagar&folhaobra_id='. $folhaobra->id .'"
                                             class="btn btn-info" role="button">Pagar</a>';
                             }
                             ?>

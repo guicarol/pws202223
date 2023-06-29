@@ -5,7 +5,7 @@
        class="btn " role="button">Folhas obra</a>
 
 
-    <a href="index.php?c=user&a=index"
+    <a href="index.php?c=user&a=show&id=<?= $user->id ?>"
        class="btn" role="button">User</a>
 
     <a href="index.php?c=auth&a=logout"

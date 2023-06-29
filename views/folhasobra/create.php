@@ -55,15 +55,6 @@
         <br>
 
 
-        <div class="row">
-            <div class="col-sm-10"></div>
-            <div class="col-sm-2">
-                <p>
-                    <a href="index.php?c=book&a=create" class="btn btn-info"
-                       role="button">New</a>
-                </p>
 
-            </div>
-        </div>
         <br>
     </div>

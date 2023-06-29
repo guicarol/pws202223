@@ -1,3 +1,7 @@
+<td>
+    <a href="index.php?c=iva&a=index"
+       class="btn btn-info" role="button">Voltar</a>
+</td>
 <h2 class="text-left top-space">Criar Iva</h2>
 <h2 class="top-space"></h2>
 <div class="row">

@@ -1,5 +1,9 @@
 <h2 class="text-left top-space">Serviço Index</h2>
 <h2 class="top-space"></h2>
+<td>
+    <a href="index.php?c=home&a=index"
+       class="btn btn-info" role="button">Voltar</a>
+</td>
 <div class="row">
     <div class="col-sm-12">
         <table class="table tablestriped">
@@ -33,7 +37,7 @@
         </table>
     </div>
     <div class="col-sm-6">
-        <h3>Create a new Book</h3>
+        <h3>Create a new Serviço</h3>
         <p>
             <a href="index.php?c=servico&a=create" class="btn btn-info"
                role="button">New</a>

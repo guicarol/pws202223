@@ -1,5 +1,9 @@
 <h2 class="text-left top-space">Novo Utilizador</h2>
 <h2 class="top-space"></h2>
+<td>
+    <a href="index.php?c=user&a=index"
+       class="btn btn-info" role="button">Voltar</a>
+</td>
 <div class="row">
     <div class="col-sm-12">
         <form action="./index.php?c=user&a=store_cliente" method="POST">

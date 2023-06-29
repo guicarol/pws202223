@@ -37,7 +37,6 @@
                 </div>
                 <br>
                 <br>
-                <br><br><br>
 
 
                 <?php if (isset($folhaobra->linhaobras)) {
@@ -72,7 +71,7 @@
                             <div class="col">
                                 <p></p>
                                 <?php
-                                echo '<a href="index.php?c=linhasobra&a=edit&id=' . $linhasobra->id . '"
+                                echo '<a href="index.php?c=linhasobra&a=edit&folhaobra_id=' . $folhaobra->id . '&servico_id='.$linhasobra->servico_id.'"
                                             class="btn btn-info" role="button">editar</a>';
 
                                 ?>
@@ -117,8 +116,9 @@
             <div class="row">
                 <div class="col-sm-10"></div>
                 <div class="col-sm-2">
+
                     <?php
-                    echo '<a href="index.php?c=folhasobra&a=updateestado&id=' . $folhaobra->id . '"
+                    echo '<a href="index.php?c=folhasobra&a=update&folhaobra_id=' . $folhaobra->id . '"
                                             class="btn btn-info" role="button">Emitir</a>';
 
                     ?><?php
@@ -128,8 +128,14 @@
                     ?>
                 </div>
             </div>
+        <?php }else{ ?>
+        <td>
+            <a href="index.php?c=home&a=index"
+               class="btn btn-info" role="button">Cancelar</a>
+        </td>
         <?php } ?>
         <br>
+
     </div>
     <br>
 </div>

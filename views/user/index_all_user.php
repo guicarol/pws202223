@@ -14,6 +14,10 @@
         <a href="index.php?c=user&a=create_user" class="btn w-100 p-2 btn-info">Criar user</a>
     </div>
 </div>
+<td>
+    <a href="index.php?c=home&a=index"
+       class="btn btn-info" role="button">Voltar</a>
+</td>
 <div class="row">
     <div class="col-sm-12">
         <table class="table tablestriped">

@@ -31,7 +31,7 @@ return [
         'edit' => ['GET', 'ServicoController', 'edit'],
         'update' => ['POST', 'ServicoController', 'update'],
         'delete' => ['GET', 'ServicoController', 'delete'],
-        'escolha_servico' => ['GET', 'ServicoController', 'escolha_servico'],
+        'escolha_servico' => ['GET|POST', 'ServicoController', 'escolha_servico'],
 
     ],
     'iva' => [
@@ -47,7 +47,7 @@ return [
         'index' => ['GET', 'UserController', 'index'],
         'select' => ['GET', 'UserController', 'select'],
         'selectfilter' => ['POST', 'UserController', 'selectfilter'],
-        'create' => ['GET', 'UserController', 'create'],
+        'create_user' => ['GET', 'UserController', 'create'],
         'store' => ['POST', 'UserController', 'store'],
         'show' => ['GET', 'UserController', 'show'],
         'edit' => ['GET', 'UserController', 'edit'],
@@ -65,9 +65,12 @@ return [
         'store' => ['GET', 'FolhaobraController', 'store'],
         'show' => ['GET', 'FolhaobraController', 'show'],
         'edit' => ['GET', 'FolhaobraController', 'edit'],
-        'update' => ['POST', 'FolhaobraController', 'update'],
+        'update' => ['GET', 'FolhaobraController', 'update'],
         'delete' => ['GET', 'FolhaobraController', 'delete'],
-            'minhasfolhasobra' => ['GET', 'FolhaobraController', 'minhasfolhasobra']
+        'minhasfolhasobra' => ['GET', 'FolhaobraController', 'minhasfolhasobra'],
+        'pagar' => ['GET', 'FolhaobraController', 'pagar'],
+        'updateestado' => ['POST', 'FolhaobraController', 'updateestado'],
+
     ],
     'linhasobra' => [
         'index' => ['GET', 'LinhaobraController', 'index'],

@@ -110,7 +110,7 @@ class ServicoController extends Controller
         } else {
             $pesquisa = '';
         }
-        $servicos = Servico::find('all', array('conditions' => "descricao LIKE '%$pesquisa%'"));
+        $servicos = Servico::find('all', array('conditions' => "referencia LIKE '%$pesquisa%'"));
 
         //mostrar a vista index passando os dados por parâmetro
         $this->renderView('servico', 'escolha_servico', ['servicos' => $servicos, 'folhaobra_id' => $folhaobra_id]);

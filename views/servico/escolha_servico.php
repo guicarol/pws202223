@@ -1,8 +1,8 @@
 <div class="row">
     <div class="col">
-        <form action="index.php?c=produto&a=escolha_servico&folhaobra_id=<?=$folhaobra_id?>" method="post">
+        <form action="index.php?c=servico&a=escolha_servico&folhaobra_id=<?=$folhaobra_id?>" method="post">
             <div class="input-group mb-3">
-                <input type="search" class="form-control" name="pesquisa" placeholder="Pesquisar produto pelo nome" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                <input type="search" class="form-control" name="pesquisa" placeholder="Pesquisar serviço pela referência" aria-label="Recipient's username" aria-describedby="basic-addon2">
                 <div class="input-group-append">
                     <button type="submit" class="btn btn-outline-secondary " type="button">&#128269;</button>
                 </div>
@@ -10,7 +10,7 @@
         </form>
     </div>
 </div>
-<h3 class="text-left top-space">Lista de produtos</h3>
+<h3 class="text-left top-space">Lista de serviços</h3>
 <div class="row">
     <div class="col-sm-12">
         <table class="table tablestriped">
@@ -30,7 +30,7 @@
                     <td class="text-center"><?= $servico->iva->percentagem?> %</td>
                     <td class="text-center">
                         <a href="index.php?c=linhasobra&a=create&folhaobra_id=<?=$folhaobra_id?>&servico_id=<?=$servico->id?>"
-                           class="btn btn-info" role="button">Adicinar produto</a>
+                           class="btn btn-info" role="button">Adicionar serviço</a>
                     </td>
                 </tr>
             <?php } ?>

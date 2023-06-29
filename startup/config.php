@@ -1,7 +1,7 @@
 <?php
 require 'vendor/autoload.php';
 
-define('APP_NAME', 'Emissão de Faturas');
+define('APP_NAME', 'Emissão de Folhasobra');
 define('INVALID_ACCESS_ROUTE', 'c=auth&a=index');
 
 

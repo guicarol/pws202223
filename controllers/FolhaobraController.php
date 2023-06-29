@@ -12,7 +12,13 @@ class FolhaobraController extends Controller
 
     public function index()
     {
-        $folhasobras = Folhaobra::all();
+        $auth = new Auth();
+        $user=$auth->getUser();
+        if($user->role=='Funcionario'){
+            $folhasobras = Folhaobra::find('all', array('conditions' => "user_id LIKE '%$user->id'"));
+        }else{
+            $folhasobras=Folhaobra::all();
+        }
 
 
         $this->renderView('folhasobra', 'index', ['folhasobras' => $folhasobras]); //chama a vista index do FolhaobraController
@@ -36,6 +42,7 @@ class FolhaobraController extends Controller
         $folhaobra = new Folhaobra();
         $auth = new Auth();
         $folhaobra->data = \Carbon\Carbon::now();
+
         $folhaobra->estado = "em lançamento";
         $folhaobra->valortotal = 0;
         $folhaobra->ivatotal = 0;
@@ -66,9 +73,9 @@ class FolhaobraController extends Controller
 
     }
 
-    public function updatestado($id)
+    public function update($folhaobra_id)
     {
-        $folhaobra = Folhaobra::find([$id]);
+        $folhaobra = Folhaobra::find($folhaobra_id);
 
         $folhaobra->estado = "emitida";
 
@@ -76,16 +83,34 @@ class FolhaobraController extends Controller
             $folhaobra->save();
             //redirecionar para o index
             $faturas = Folhaobra::all();
-            $this->renderView('folhaobra', 'index', ['faturas' => $faturas]);
+            $this->redirectToRoute('folhasobra', 'index');
         } else {
             //mostrar vista edit passando o modelo como parâmetro
-            $this->renderView('folhaobra', 'edit', ['folhaobra' => $folhaobra]);
+            $this->redirectToRoute('folhasobra', 'index');
+        }
+    }
+
+    public function updateestado($folhaobra_id)
+    {
+
+        $folhaobra = Folhaobra::find('1', array('conditions' => "id LIKE '%$folhaobra_id'"));
+
+        $folhaobra->estado = "emitida";
+
+        if ($folhaobra->is_valid()) {
+            $folhaobra->save();
+            //redirecionar para o index
+            $this->redirectToRoute('folhasobra', 'minhasfolhasobra');
+        } else {
+            //mostrar vista edit passando o modelo como parâmetro
+            $this->redirectToRoute('home', 'minhasfolhasobra'); //chama a vista index do FolhaobraController
         }
 
     }
 
     public function imprimir($folhaobra_id)
     {
+
         $folhaobra = Folhaobra::find($folhaobra_id);
         $linhasobra = Linhaobra::find('all', array('conditions' => "folhaobra_id LIKE '%$folhaobra_id'"));
         $empresa=Empresas::find(1);
@@ -100,11 +125,20 @@ class FolhaobraController extends Controller
         $auth = new Auth();
         $user = $auth->getUser();
 
-
-        $folhaobras = Folhaobra::find('all');
+        $folhaobras = Folhaobra::find('all', array('conditions' => "cliente_id LIKE '%$user->id'"));
 
         //mostrar a vista index passando os dados por parâmetro
         $this->renderView('folhasobra', 'minhasfolhasobra', ['folhaobras' => $folhaobras]);
+
+
+    }
+
+    public function pagar($folhaobra_id)
+    {
+
+
+        //mostrar a vista index passando os dados por parâmetro
+        $this->renderView('folhasobra', 'pagar', ['folhaobra_id' => $folhaobra_id]);
 
 
     }

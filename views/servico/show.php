@@ -1,4 +1,4 @@
-<h2 class="text-left top-space">Book Index</h2>
+<h2 class="text-left top-space">Serviço Show</h2>
 <h2 class="top-space"></h2>
 <div class="row">
     <div class="col-sm-12">

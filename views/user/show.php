@@ -1,5 +1,9 @@
 <h2 class="text-left top-space">User: <?=$user->username?></h2>
 <h2 class="top-space"></h2>
+<td>
+    <a href="index.php?c=home&a=index"
+       class="btn btn-info" role="button">Voltar</a>
+</td>
 <div class="row">
     <div class="col-sm-12">
         <table class="table tablestriped">
@@ -23,4 +27,5 @@
             </tbody>
         </table>
     </div>
+
 </div>

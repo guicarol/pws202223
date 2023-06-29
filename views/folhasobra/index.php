@@ -1,5 +1,10 @@
 <h2 class="text-left top-space">Folha obra Index</h2>
 <h2 class="top-space"></h2>
+
+<td>
+    <a href="index.php?c=home&a=index"
+       class="btn btn-info" role="button">Voltar</a>
+</td>
 <div class="row">
     <div class="col-sm-12">
         <table class="table tablestriped">
@@ -27,9 +32,7 @@
                                             class="btn btn-info" role="button">Editar Serviço</a>';
                                 }else if($folhasobra->estado == "emitida"){
                                     echo '<a target="_blank" href="index.php?c=folhasobra&a=imprimir&folhaobra_id='. $folhasobra->id .'"
-                                            class="btn btn-info" role="button">Imprimir</a>
-                                          <a href="index.php?c=linhasobra&a=index&folhaobra_id='. $folhasobra->id .'"
-                                            class="btn btn-info" role="button">show</a>';
+                                            class="btn btn-info" role="button">Imprimir</a>';
                                 }
                             ?>
                         </td>

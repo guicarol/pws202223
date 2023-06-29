@@ -6,7 +6,7 @@ class LinhaobraController extends Controller
 {
     public function __construct()
     {
-        $this->authorizationFilter(['Funcionario', 'Cliente', 'Admin']);
+        $this->authorizationFilter(['Funcionario', 'Admin']);
 
     }
 
@@ -77,16 +77,19 @@ var_dump($folhaobra->subtotal);
         }
     }
 
-    public function edit($id)
+    public function edit($folhaobra_id, $servico_id)
     {
-        $folhaobra = Folhaobra::find($id);
-        if (is_null($folhaobra)) {
+        $linhasobra=Linhaobra::find('1', array('conditions' => "folhaobra_id LIKE '%$folhaobra_id' and servico_id LIKE'%$servico_id'"));
+        $this->delete($linhasobra->id);
+        $folhaobra = Folhaobra::find($folhaobra_id);
+        $servico = Servico::find($servico_id);
+        if (is_null($folhaobra_id)) {
             //TODO redirect to standard error page
             header('Location:index.php?' . INVALID_ACCESS_ROUTE);
 
         } else {
             //mostrar a vista edit passando os dados por parâmetro
-            $this->renderView('linhasobra', 'index', ['folhaobra' => $folhaobra]);
+            $this->renderView('linhasobra', 'edit', ['folhaobra' => $folhaobra, 'servico' => $servico]);
 
         }
     }
@@ -111,8 +114,19 @@ var_dump($folhaobra->subtotal);
     {
         $linhaobra = Linhaobra::find($id);
         $linhaobra->delete();
+        $servico = Servico::find($linhaobra->servico_id);
+
+        $folhaobra = Folhaobra::find($linhaobra->folhaobra_id);
+        $folhaobra->ivatotal -= ($servico->iva->percentagem * $folhaobra->subtotal) / 100;
+
+        $folhaobra->subtotal -= $linhaobra->valor;
+
+        $folhaobra->valortotal=$folhaobra->subtotal+$folhaobra->ivatotal;
+
+        $folhaobra->save();
+
         //redirecionar para o index
-        $this->redirectToRoute('linhasobra', 'create', ['folhaobra_id' => $linhaobra->folhaobra_id, 'servico_id' => $linhaobra->servico_id]);
+        $this->redirectToRoute('linhasobra', 'index', ['folhaobra_id' => $linhaobra->folhaobra_id]);
 
     }
 }

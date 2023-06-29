@@ -1,3 +1,7 @@
+<td>
+    <a href="index.php?c=home&a=index"
+       class="btn btn-info" role="button">Voltar</a>
+</td>
 <div class="row">
     <div class="col">
         <h2 class="text-left top-space">Ivas</h2>

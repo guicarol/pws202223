@@ -6,8 +6,22 @@ require_once './models/User.php';
 class UserController extends Controller
 {
 
+    public function __construct()
+    {
+        $auth = new Auth();
+        $user = $auth->getUser();
+
+        if ($user->role == 'Cliente') {
+            $this->renderView('user', 'show', ['user' => $user]);
+        }
+
+    }
+
     public function index()
     {
+
+        $this->authorizationFilter(['Admin','Funcionario']);
+
         $auth = new Auth();
         $user = $auth->getUser();
 
@@ -16,8 +30,6 @@ class UserController extends Controller
         } elseif ($user->role == 'Admin') {
             $users = User::all();
             $this->renderView('user', 'index_all_user', ['users' => $users]);
-        } elseif ($user->role == 'Cliente') {
-            $this->renderView('user', 'show', ['user' => $user]);
         }
 
     }
@@ -25,22 +37,36 @@ class UserController extends Controller
     public
     function show($id)
     {
-        $user = User::find($id);
-        if (is_null($user)) {
-            $this->redirectToRoute('user', 'index');
-        } else {
+        $auth = new Auth();
+        $user = $auth->getUser();
+        if ($user->role == 'Cliente' && $user->id == $id) {
             $this->renderView('user', 'show', ['user' => $user]);
+        } else {
+            $user = User::find($id);
+            if (is_null($user)) {
+                $this->redirectToRoute('user', 'index');
+            } else {
+
+                $this->renderView('user', 'show', ['user' => $user]);
+            }
         }
     }
+
 
     public
     function edit($id)
     {
+
         $user = User::find($id);
         if (is_null($user)) {
             $this->redirectToRoute('user', 'index');
         } else {
-            $this->renderView('user', 'edit', ['user' => $user]);
+            if ($user->role == 'Funcionario') {
+                $this->renderView('user', 'edit_func', ['user' => $user]);
+
+            } elseif ($user->role == 'Admin') {
+                $this->renderView('user', 'edit', ['user' => $user]);
+            }
         }
     }
 
@@ -81,8 +107,10 @@ class UserController extends Controller
     public
     function create_user()
     {
-        //mostrar a vista create
-        if ($this->getRole() == 'admin') {
+        $auth = new Auth();
+        $user = $auth->getUser();
+
+        if ($user->role == 'Admin') {
             $this->renderView('user', 'create_user');
         } else {
             $this->redirectToRoute('user', 'create_cliente');
@@ -93,7 +121,10 @@ class UserController extends Controller
     public
     function store_user()
     {
-        if ($this->getRole() == 'admin') {
+        $auth = new Auth();
+        $user = $auth->getUser();
+
+        if ($user->role == 'Admin') {
             $user = new User();
 
             $user->username = $_POST['username'];
@@ -161,7 +192,8 @@ class UserController extends Controller
 
     }
 
-    public function create_cliente()
+    public
+    function create_cliente()
     {
         //mostrar a vista create
         $auth = new Auth();
@@ -175,7 +207,8 @@ class UserController extends Controller
 
     }
 
-    public function store_cliente()
+    public
+    function store_cliente()
     {
         $auth = new Auth();
         $user = $auth->getUser();
@@ -195,7 +228,7 @@ class UserController extends Controller
             $cliente->morada = $_POST['morada'];
             $cliente->codigopostal = $_POST['codigopostal'];
             $cliente->localidade = $_POST['localidade'];
-            $cliente->role = 'cliente';
+            $cliente->role = 'Cliente';
 
             if ($cliente->is_valid()) {
                 $cliente->save();

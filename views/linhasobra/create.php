@@ -38,7 +38,7 @@
 
                                 <label>Referencia do serviço</label>
                                 <?php if (isset($servico)) { ?>
-                                    <input type="text" name="" class="form-control" value="<?= $servico->referencia ?>">
+                                    <input type="text" name="" class="form-control"  value="<?= $servico->referencia ?>">
                                     <p><?php
                                         if (isset($naoservico) and $naoservico) {
                                             echo 'Serviço inexistente';
@@ -77,7 +77,7 @@
                         <div class="col-2">
                             <label>Preço hora</label>
                             <?php if (isset($servico)) { ?>
-                                <input type="number" name="" class="form-control" value="<?= $servico->precohora ?>">
+                                <input type="number" name="" class="form-control"  value="<?= $servico->precohora ?>">
                                 <p><?php
                                     if (isset($naoservico) and $naoservico) {
                                         echo 'Serviço inexistente';
@@ -174,6 +174,7 @@
                     <a class="nav-link" href="./index.php?c=folhaobra&a=updateestado&id=<?= $folhaobra->id ?>">
                         <button class="btn w-100 p-2 btn-info">Emitir folha obra</button>
                     </a>
+
                 </div>
             </div>
         <?php } ?>
