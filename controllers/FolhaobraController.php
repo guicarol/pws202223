@@ -29,7 +29,7 @@ class FolhaobraController extends Controller
     {
         #find empresa
 
-        $empresa = Empresas::find(1);
+        $empresa = Empresas::first();
 
         //mostrar a vista create
         $this->renderView('folhasobra', 'create', ['empresa' => $empresa]);
@@ -113,7 +113,7 @@ class FolhaobraController extends Controller
 
         $folhaobra = Folhaobra::find($folhaobra_id);
         $linhasobra = Linhaobra::find('all', array('conditions' => "folhaobra_id LIKE '%$folhaobra_id'"));
-        $empresa=Empresas::find(1);
+        $empresa=Empresas::first();
 
         //mostrar a vista index passando os dados por parâmetro
         $this->renderView('folhasobra', 'imprimir', ['folhaobra' => $folhaobra,'linhasobra'=>$linhasobra,'empresa'=>$empresa]);
